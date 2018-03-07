@@ -37,6 +37,8 @@
             this._txtNombre = new System.Windows.Forms.TextBox();
             this._txtCuenta = new System.Windows.Forms.TextBox();
             this._txtContrasena = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this._txtTipoUsuario = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,6 +46,8 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this._txtTipoUsuario);
             this.panel1.Controls.Add(this._btnEditar);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this._lblCuenta);
@@ -59,7 +63,7 @@
             // 
             // _btnEditar
             // 
-            this._btnEditar.Location = new System.Drawing.Point(226, 98);
+            this._btnEditar.Location = new System.Drawing.Point(206, 135);
             this._btnEditar.Name = "_btnEditar";
             this._btnEditar.Size = new System.Drawing.Size(87, 23);
             this._btnEditar.TabIndex = 21;
@@ -143,6 +147,28 @@
             this._txtContrasena.TabStop = false;
             this._txtContrasena.Text = ".";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(14, 107);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 13);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Tipo de Usuario";
+            // 
+            // _txtTipoUsuario
+            // 
+            this._txtTipoUsuario.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this._txtTipoUsuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this._txtTipoUsuario.Location = new System.Drawing.Point(129, 107);
+            this._txtTipoUsuario.Name = "_txtTipoUsuario";
+            this._txtTipoUsuario.ReadOnly = true;
+            this._txtTipoUsuario.Size = new System.Drawing.Size(184, 13);
+            this._txtTipoUsuario.TabIndex = 24;
+            this._txtTipoUsuario.TabStop = false;
+            this._txtTipoUsuario.Text = ".";
+            // 
             // CardUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,5 +194,7 @@
         private System.Windows.Forms.TextBox _txtNombre;
         private System.Windows.Forms.TextBox _txtCuenta;
         private System.Windows.Forms.TextBox _txtContrasena;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox _txtTipoUsuario;
     }
 }

@@ -478,7 +478,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!FECHA_HORA.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <Format>g</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -896,7 +898,6 @@
       <NumberOfRows>2</NumberOfRows>
     </GridLayoutDefinition>
   </ReportParametersLayout>
-
   <EmbeddedImages>
     <EmbeddedImage Name="LogoDiarte">
       <MIMEType>image/jpeg</MIMEType>

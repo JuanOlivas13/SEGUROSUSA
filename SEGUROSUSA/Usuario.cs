@@ -15,15 +15,17 @@ namespace SEGUROSUSA
         public String nombreCompleto;
         public String usuario;
         public String contrasena;
+        public Int32 tipoUsuario;
 
         public Usuario() { }
 
-        public Usuario(Int32 idUsuario, String nombreCompleto, String usuario, String contrasena)
+        public Usuario(Int32 idUsuario, String nombreCompleto, String usuario, String contrasena,Int32 tipoUsuario)
         {
             this.idUsuario = idUsuario;
             this.nombreCompleto = nombreCompleto;
             this.usuario = usuario;
             this.contrasena = contrasena;
+            this.tipoUsuario = tipoUsuario;
         }
 
         public override string ToString()

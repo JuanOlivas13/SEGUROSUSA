@@ -23,19 +23,22 @@ namespace SEGUROSUSA
             _txtNombre.Text = Usuario.auxiliar.nombreCompleto;
             _txtCuenta.Text = Usuario.auxiliar.usuario;
             _txtContrasena.Text = Usuario.auxiliar.contrasena;
+            cmbUsuario.SelectedIndex = Usuario.auxiliar.tipoUsuario;
         }
 
         private void _btnEditar_Click(object sender, EventArgs e)
         {
-            SqlCommand editarUsuario = new SqlCommand("UPDATE USUARIO SET NOMBRE_COMPLETO = @NOMBRE_COMPLETO, CUENTA_USUARIO = @CUENTA_USUARIO, CONTRASENA = @CONTRASENA WHERE ID_USUARIO = @ID_USUARIO;", Connection.ObtenerConexion());
+            SqlCommand editarUsuario = new SqlCommand("UPDATE USUARIO SET NOMBRE_COMPLETO = @NOMBRE_COMPLETO, CUENTA_USUARIO = @CUENTA_USUARIO, CONTRASENA = @CONTRASENA, ADMIN=@ADMIN WHERE ID_USUARIO = @ID_USUARIO;", Connection.ObtenerConexion());
             editarUsuario.Parameters.Add(new SqlParameter("NOMBRE_COMPLETO", _txtNombre.Text));
             editarUsuario.Parameters.Add(new SqlParameter("CUENTA_USUARIO", _txtCuenta.Text));
             editarUsuario.Parameters.Add(new SqlParameter("CONTRASENA", _txtContrasena.Text));
+            editarUsuario.Parameters.Add(new SqlParameter("ADMIN", cmbUsuario.SelectedIndex));
             editarUsuario.Parameters.Add(new SqlParameter("ID_USUARIO", Usuario.auxiliar.idUsuario));
 
             Usuario.auxiliar.nombreCompleto = _txtNombre.Text;
             Usuario.auxiliar.usuario = _txtCuenta.Text;
             Usuario.auxiliar.contrasena = _txtContrasena.Text;
+            Usuario.auxiliar.tipoUsuario = cmbUsuario.SelectedIndex;
 
             try
             {

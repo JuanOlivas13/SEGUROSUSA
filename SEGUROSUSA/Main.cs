@@ -52,12 +52,12 @@ namespace SEGUROSUSA
             if (cmbFormadePago.SelectedIndex == 0)
             {
                 txtPagoCon.Enabled=true;
+                txtPagoCon.Text = "0.00";
             }
             else
             {
                 txtPagoCon.Clear();
                 txtPagoCon.Enabled = false;
-                lblCambio.Text = "0.00";
             }
         }
 
@@ -127,29 +127,14 @@ namespace SEGUROSUSA
                 if (cmbTipodePago.SelectedIndex == 0 && cmbFormadePago.SelectedIndex == 0)
                 {
                     _cambio = Convert.ToDouble(txtPagoCon.Text) - Convert.ToDouble(txtCantidad.Text);
-                    if (_cambio >= 0)
-                    {
-                        lblCambio.Text = _cambio.ToString("0.00");
-                        txtPagoCon.Text = _pagoCon.ToString("F2");
-                    }
-                    else
-                    {
-                        MessageBox.Show("El pago es menor al total");
-                        txtPagoCon.Focus();
-                    }   
+                    lblCambio.Text = _cambio.ToString("0.00");
+                    txtPagoCon.Text = _pagoCon.ToString("F2");
                 }
                 else if (cmbTipodePago.SelectedIndex == 1 && cmbFormadePago.SelectedIndex == 0)
                 {
                     _cambio = Convert.ToDouble(txtPagoCon.Text) - (Convert.ToDouble(txtCantidad.Text) * _valorDolar);
-                    if (_cambio >= 0)
-                    {
-                        lblCambio.Text = _cambio.ToString("0.00");
-                        txtPagoCon.Text = _pagoCon.ToString("F2");
-                    }
-                    else
-                    {
-                        MessageBox.Show("El pago es menor al total");
-                    }
+                    lblCambio.Text = _cambio.ToString("0.00");
+                    txtPagoCon.Text = _pagoCon.ToString("F2");
                 }
             }
         }
@@ -192,10 +177,10 @@ namespace SEGUROSUSA
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
-        {
+        { 
             if (txtCantidad.Text == "")
             {
-                MessageBox.Show("Favor de ingresar cantidad");
+                MessageBox.Show("Favor de ingresar cantidad","Falta Cantidad");
             }
             else
             {
@@ -204,16 +189,16 @@ namespace SEGUROSUSA
                 _formadepago = cmbFormadePago.Text;
                 _cantidad = Convert.ToDouble(txtCantidad.Text.Trim());
                 _cantidadpesos = _cantidad * _valorDolar;
-                _comentario = "GRACIAS POR SU COMPRA!! \n" +txtComentario.Text;
-                if(cmbTipodePago.SelectedIndex==0 && cmbFormadePago.SelectedIndex == 0)
+                _comentario = "GRACIAS POR SU COMPRA!! \n" + txtComentario.Text;
+                if (cmbTipodePago.SelectedIndex == 0 && cmbFormadePago.SelectedIndex == 0)
                 {
                     _pagoCon = Convert.ToDouble(txtPagoCon.Text);
-                    _cambio = _pagoCon-_cantidad;
+                    _cambio = _pagoCon - _cantidad;
                 }
-                else if (cmbTipodePago.SelectedIndex==1 && cmbFormadePago.SelectedIndex==0)
+                else if (cmbTipodePago.SelectedIndex == 1 && cmbFormadePago.SelectedIndex == 0)
                 {
                     _pagoCon = Convert.ToDouble(txtPagoCon.Text);
-                    _cambio = _pagoCon - _cantidadpesos; 
+                    _cambio = _pagoCon - _cantidadpesos;
                 }
                 else
                 {
@@ -238,6 +223,7 @@ namespace SEGUROSUSA
                     {
                         Connection.conn.Close();
                         MostrarVentas();
+                        ValoresPorDefault();
                     }
                 }
                 else if (cmbTipodePago.SelectedIndex == 1)
@@ -258,9 +244,22 @@ namespace SEGUROSUSA
                     {
                         Connection.conn.Close();
                         MostrarVentas();
+                        ValoresPorDefault();
                     }
                 }
             }
+        }
+
+        private void ValoresPorDefault()
+        {
+            txtCantidad.Text = "0.00";
+            txtPagoCon.Text = "0.00";
+            txtComentario.Text = "";
+            lblTotal.Text = "0.00";
+            lblCambio.Text = "0.00";
+            txtCantidad.Focus();
+            cmbFormadePago.SelectedIndex = 0;
+            cmbTipodePago.SelectedIndex = 0;
         }
 
         private SqlCommand VentaPesos()
@@ -282,18 +281,39 @@ namespace SEGUROSUSA
             rp.ShowDialog();
         }
 
-        
+        private void lblCambio_TextChanged(object sender, EventArgs e)
+        {
+            if (_cambio < 0)
+            {
+                lblCambio.Text = "0.00";
+                txtPagoCon.Text = "0.00";
+            }
+        }
 
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Usuarios us = new Usuarios();
-            us.ShowDialog();
+            if (Login._isAdmin==1)
+            {
+                Usuarios us = new Usuarios();
+                us.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No tiene permisos para acceder a esta función", "No permitido");
+            }
         }
 
         private void usuariosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Usuarios us = new Usuarios();
-            us.ShowDialog();
+            if (Login._isAdmin == 1)
+            {
+                Usuarios us = new Usuarios();
+                us.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No tiene permisos para acceder a esta función", "No permitido");
+            }
         }
 
         private void corteDeCajaToolStripMenuItem1_Click(object sender, EventArgs e)

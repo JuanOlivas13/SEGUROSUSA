@@ -38,6 +38,8 @@
             this._btnCancelar = new System.Windows.Forms.Button();
             this._btnRegistrar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbUsuario = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // _txtCuenta
@@ -93,7 +95,7 @@
             // 
             // _btnCancelar
             // 
-            this._btnCancelar.Location = new System.Drawing.Point(209, 174);
+            this._btnCancelar.Location = new System.Drawing.Point(209, 205);
             this._btnCancelar.Name = "_btnCancelar";
             this._btnCancelar.Size = new System.Drawing.Size(75, 23);
             this._btnCancelar.TabIndex = 82;
@@ -103,7 +105,7 @@
             // 
             // _btnRegistrar
             // 
-            this._btnRegistrar.Location = new System.Drawing.Point(105, 174);
+            this._btnRegistrar.Location = new System.Drawing.Point(101, 205);
             this._btnRegistrar.Name = "_btnRegistrar";
             this._btnRegistrar.Size = new System.Drawing.Size(75, 23);
             this._btnRegistrar.TabIndex = 81;
@@ -121,11 +123,33 @@
             this.label4.TabIndex = 83;
             this.label4.Text = "Registrar Usuario";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(40, 165);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(80, 13);
+            this.label5.TabIndex = 84;
+            this.label5.Text = "Tipo de usuario";
+            // 
+            // cmbUsuario
+            // 
+            this.cmbUsuario.FormattingEnabled = true;
+            this.cmbUsuario.Items.AddRange(new object[] {
+            "Empleado",
+            "Administrador"});
+            this.cmbUsuario.Location = new System.Drawing.Point(134, 162);
+            this.cmbUsuario.Name = "cmbUsuario";
+            this.cmbUsuario.Size = new System.Drawing.Size(121, 21);
+            this.cmbUsuario.TabIndex = 85;
+            // 
             // RegistrarUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(388, 218);
+            this.ClientSize = new System.Drawing.Size(388, 250);
+            this.Controls.Add(this.cmbUsuario);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this._btnCancelar);
             this.Controls.Add(this._btnRegistrar);
@@ -138,6 +162,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RegistrarUsuario";
             this.Text = "RegistrarUsuario";
+            this.Load += new System.EventHandler(this.RegistrarUsuario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,5 +179,7 @@
         private System.Windows.Forms.Button _btnCancelar;
         private System.Windows.Forms.Button _btnRegistrar;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmbUsuario;
     }
 }

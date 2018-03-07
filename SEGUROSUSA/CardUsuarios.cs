@@ -22,6 +22,14 @@ namespace SEGUROSUSA
             _txtNombre.Text = Usuario.auxiliar.nombreCompleto;
             _txtCuenta.Text = Usuario.auxiliar.usuario;
             _txtContrasena.Text = Usuario.auxiliar.contrasena;
+            if (Usuario.auxiliar.tipoUsuario == 1)
+            {
+                _txtTipoUsuario.Text = "Administrador";
+            }
+            else if (Usuario.auxiliar.tipoUsuario == 0)
+            {
+                _txtTipoUsuario.Text = "Empleado";
+            }
         }
 
         private void _btnEditar_Click(object sender, EventArgs e)

@@ -31,7 +31,8 @@ namespace SEGUROSUSA
                             rdr.GetInt32(0),
                             rdr.GetString(1),
                             rdr.GetString(2),
-                            rdr.GetString(3)
+                            rdr.GetString(3),
+                            rdr.GetInt32(4)
                         );
                         Usuario.Listausuarios.Add(nuevoUsuario);
                     }

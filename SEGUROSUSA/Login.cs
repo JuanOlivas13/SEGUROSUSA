@@ -14,6 +14,7 @@ namespace SEGUROSUSA
     {
         public static String _nombreEmpleado;
         public static Int32 _idEmpleado;
+        public static Int32 _isAdmin;
         public Login()
         {
             InitializeComponent();
@@ -29,6 +30,7 @@ namespace SEGUROSUSA
                 {
                     _nombreEmpleado = readUser.GetString(1);
                     _idEmpleado = readUser.GetInt32(0);
+                    _isAdmin = readUser.GetInt32(4);
 
                 }
                 if (_nombreEmpleado != null)
