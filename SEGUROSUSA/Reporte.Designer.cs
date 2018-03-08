@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reporte));
+            this.VENTABindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DatosVentas = new SEGUROSUSA.DatosVentas();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnReporte = new System.Windows.Forms.Button();
@@ -38,24 +40,34 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.VENTABindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DatosVentas = new SEGUROSUSA.DatosVentas();
             this.VENTATableAdapter = new SEGUROSUSA.DatosVentasTableAdapters.VENTATableAdapter();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VENTABindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DatosVentas)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // VENTABindingSource
+            // 
+            this.VENTABindingSource.DataMember = "VENTA";
+            this.VENTABindingSource.DataSource = this.DatosVentas;
+            // 
+            // DatosVentas
+            // 
+            this.DatosVentas.DataSetName = "DatosVentas";
+            this.DatosVentas.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Bottom;
             reportDataSource1.Name = "Reporte";
             reportDataSource1.Value = this.VENTABindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "SEGUROSUSA.CorteDeCaja.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(0, 81);
+            this.reportViewer1.Location = new System.Drawing.Point(0, -11);
+            this.reportViewer1.MaximumSize = new System.Drawing.Size(937, 672);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(920, 668);
+            this.reportViewer1.Size = new System.Drawing.Size(937, 672);
             this.reportViewer1.TabIndex = 1;
             // 
             // panel1
@@ -68,7 +80,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(922, 75);
+            this.panel1.Size = new System.Drawing.Size(954, 75);
             this.panel1.TabIndex = 2;
             // 
             // btnReporte
@@ -122,21 +134,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "De:";
             // 
-            // VENTABindingSource
-            // 
-            this.VENTABindingSource.DataMember = "VENTA";
-            this.VENTABindingSource.DataSource = this.DatosVentas;
-            // 
-            // DatosVentas
-            // 
-            this.DatosVentas.DataSetName = "DatosVentas";
-            this.DatosVentas.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // VENTABindingSource
-            // 
-            this.VENTABindingSource.DataMember = "VENTA";
-            this.VENTABindingSource.DataSource = this.DatosVentas;
-            // 
             // VENTATableAdapter
             // 
             this.VENTATableAdapter.ClearBeforeFill = true;
@@ -145,23 +142,24 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(922, 749);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(954, 661);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.reportViewer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Reporte";
             this.Text = "Reporte";
             this.Load += new System.EventHandler(this.Reporte_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VENTABindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DatosVentas)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DateTimePicker dtpFromDate;
         private System.Windows.Forms.Label label1;
@@ -171,5 +169,6 @@
         private System.Windows.Forms.BindingSource VENTABindingSource;
         private DatosVentas DatosVentas;
         private DatosVentasTableAdapters.VENTATableAdapter VENTATableAdapter;
+        public Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

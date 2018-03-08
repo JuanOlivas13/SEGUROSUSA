@@ -141,7 +141,7 @@
             this.cmbUsuario.Location = new System.Drawing.Point(134, 162);
             this.cmbUsuario.Name = "cmbUsuario";
             this.cmbUsuario.Size = new System.Drawing.Size(121, 21);
-            this.cmbUsuario.TabIndex = 85;
+            this.cmbUsuario.TabIndex = 79;
             // 
             // RegistrarUsuario
             // 

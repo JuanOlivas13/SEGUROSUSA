@@ -51,39 +51,56 @@ namespace SEGUROSUSA
         {
             if (cmbFormadePago.SelectedIndex == 0)
             {
-                txtPagoCon.Enabled=true;
+                txtPagoCon.ReadOnly = false;
                 txtPagoCon.Text = "0.00";
             }
             else
             {
                 txtPagoCon.Clear();
-                txtPagoCon.Enabled = false;
+                txtPagoCon.ReadOnly = true;
+                txtPagoCon.Text = "0.00";
             }
         }
 
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar== 46 && txtCantidad.Text.IndexOf('.')!=-1)
+            if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true;
-                return;
+                SendKeys.Send("{TAB}");
             }
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar!=8 && e.KeyChar != 46)
+            else
             {
-                e.Handled = true;
+                if (e.KeyChar == 46 && txtCantidad.Text.IndexOf('.') != -1)
+                {
+                    e.Handled = true;
+                    return;
+                }
+                if (!Char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 46)
+                {
+                    e.Handled = true;
+                }
             }
         }
 
         private void txtPagoCon_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 46 && txtCantidad.Text.IndexOf('.') != -1)
+            if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true;
-                return;
+                SendKeys.Send("{TAB}");
             }
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 46)
+            else
             {
-                e.Handled = true;
+                if (e.KeyChar == 46 && txtCantidad.Text.IndexOf('.') != -1)
+                {
+                    e.Handled = true;
+                    return;
+                }
+                if (!Char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 46)
+                {
+                    e.Handled = true;
+                }
             }
         }
 
@@ -155,7 +172,7 @@ namespace SEGUROSUSA
             dgvVentas.AutoGenerateColumns = false;
             SqlCommand selectVentas = new SqlCommand("SELECT USUARIO,CANTIDAD,TIPO_DE_PAGO,FECHA_HORA,FORMA_DE_PAGO,CANTIDAD_PESOS from VENTA where FECHA_HORA >= @fecha AND USUARIO=@usuario;", Connection.ObtenerConexion());
             selectVentas.Parameters.Add(new SqlParameter("usuario", Login._nombreEmpleado));
-            selectVentas.Parameters.Add(new SqlParameter("fecha", dtpVentas.Value));
+            selectVentas.Parameters.Add(new SqlParameter("fecha", dtpVentas.Value.Date));
             try
             {
                 using (SqlDataReader rdr = selectVentas.ExecuteReader())
@@ -180,9 +197,9 @@ namespace SEGUROSUSA
         { 
             if (txtCantidad.Text == "")
             {
-                MessageBox.Show("Favor de ingresar cantidad","Falta Cantidad");
+                MessageBox.Show("Falta ingresar el campo cantidad","Falta Cantidad");
             }
-            else
+            else if (txtPagoCon.Text!="")
             {
                 _usuario = Login._nombreEmpleado;
                 _tipodepago = cmbTipodePago.Text;
@@ -193,12 +210,29 @@ namespace SEGUROSUSA
                 if (cmbTipodePago.SelectedIndex == 0 && cmbFormadePago.SelectedIndex == 0)
                 {
                     _pagoCon = Convert.ToDouble(txtPagoCon.Text);
-                    _cambio = _pagoCon - _cantidad;
+                    if (_pagoCon < _cantidad)
+                    {
+                        MessageBox.Show("El pago es menor al total");
+                        return;
+                    }
+                    else
+                    {
+                        _cambio = _pagoCon - _cantidad;
+                    }
+                    
                 }
                 else if (cmbTipodePago.SelectedIndex == 1 && cmbFormadePago.SelectedIndex == 0)
                 {
                     _pagoCon = Convert.ToDouble(txtPagoCon.Text);
-                    _cambio = _pagoCon - _cantidadpesos;
+                    if (_pagoCon < _cantidadpesos)
+                    {
+                        MessageBox.Show("El pago es menor al total");
+                        return;
+                    }
+                    else
+                    {
+                        _cambio = _pagoCon - _cantidadpesos;
+                    }
                 }
                 else
                 {
@@ -248,6 +282,10 @@ namespace SEGUROSUSA
                     }
                 }
             }
+            else
+            {
+                MessageBox.Show("Falto ingresar el campo pago", "Falta Pago");
+            }
         }
 
         private void ValoresPorDefault()
@@ -287,6 +325,33 @@ namespace SEGUROSUSA
             {
                 lblCambio.Text = "0.00";
                 txtPagoCon.Text = "0.00";
+            }
+        }
+
+        private void txtComentario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void cmbTipodePago_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void cmbFormadePago_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
             }
         }
 

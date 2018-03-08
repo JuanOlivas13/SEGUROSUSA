@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.usuariosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -175,6 +177,9 @@
             // 
             // Cantidad
             // 
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle1;
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.Name = "Cantidad";
             this.Cantidad.ReadOnly = true;
@@ -187,12 +192,14 @@
             // 
             // Hora_Fecha
             // 
-            dataGridViewCellStyle1.Format = "f";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Hora_Fecha.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Hora_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Format = "f";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Hora_Fecha.DefaultCellStyle = dataGridViewCellStyle2;
             this.Hora_Fecha.HeaderText = "Hora y Fecha";
             this.Hora_Fecha.Name = "Hora_Fecha";
             this.Hora_Fecha.ReadOnly = true;
+            this.Hora_Fecha.Width = 88;
             // 
             // Forma_de_pago
             // 
@@ -202,6 +209,9 @@
             // 
             // Cantidad_pesos
             // 
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Cantidad_pesos.DefaultCellStyle = dataGridViewCellStyle3;
             this.Cantidad_pesos.HeaderText = "Cantidad en pesos";
             this.Cantidad_pesos.Name = "Cantidad_pesos";
             this.Cantidad_pesos.ReadOnly = true;
@@ -314,6 +324,7 @@
             this.txtComentario.Name = "txtComentario";
             this.txtComentario.Size = new System.Drawing.Size(308, 92);
             this.txtComentario.TabIndex = 32;
+            this.txtComentario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtComentario_KeyPress);
             // 
             // label7
             // 
@@ -335,6 +346,7 @@
             this.txtPagoCon.TabIndex = 31;
             this.txtPagoCon.Text = "0.00";
             this.txtPagoCon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPagoCon.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPagoCon_KeyPress);
             this.txtPagoCon.Leave += new System.EventHandler(this.txtPagoCon_Leave);
             // 
             // label6
@@ -383,6 +395,7 @@
             this.cmbFormadePago.Size = new System.Drawing.Size(126, 32);
             this.cmbFormadePago.TabIndex = 30;
             this.cmbFormadePago.SelectedIndexChanged += new System.EventHandler(this.cmbFormadePago_SelectedIndexChanged);
+            this.cmbFormadePago.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbFormadePago_KeyPress);
             // 
             // cmbTipodePago
             // 
@@ -397,6 +410,7 @@
             this.cmbTipodePago.Size = new System.Drawing.Size(126, 32);
             this.cmbTipodePago.TabIndex = 29;
             this.cmbTipodePago.SelectedIndexChanged += new System.EventHandler(this.cmbTipodePago_SelectedIndexChanged);
+            this.cmbTipodePago.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbTipodePago_KeyPress);
             // 
             // txtCantidad
             // 
@@ -407,6 +421,7 @@
             this.txtCantidad.TabIndex = 28;
             this.txtCantidad.Text = "0.00";
             this.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             this.txtCantidad.Leave += new System.EventHandler(this.txtCantidad_Leave);
             // 
             // label4
@@ -512,12 +527,6 @@
         private System.Windows.Forms.ToolStripMenuItem cambiarElValorDelDolarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem corteDeCajaToolStripMenuItem1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo_de_pago;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Hora_Fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Forma_de_pago;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad_pesos;
         private System.Windows.Forms.DateTimePicker dtpVentas;
         private System.Windows.Forms.Button btnMostrar;
         private System.Windows.Forms.Label lblCambio;
@@ -538,6 +547,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo_de_pago;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hora_Fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Forma_de_pago;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad_pesos;
     }
 }
 
