@@ -66,6 +66,7 @@
             this._txtContrasena.Name = "_txtContrasena";
             this._txtContrasena.Size = new System.Drawing.Size(219, 20);
             this._txtContrasena.TabIndex = 77;
+            this._txtContrasena.UseSystemPasswordChar = true;
             // 
             // label2
             // 

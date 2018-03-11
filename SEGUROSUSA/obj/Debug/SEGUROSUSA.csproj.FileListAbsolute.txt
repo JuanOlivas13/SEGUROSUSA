@@ -250,3 +250,7 @@ C:\Users\FAM-OLIVAS\Documents\JUAN\SEGUROSUSA\SEGUROSUSA\obj\Debug\SEGUROSUSA.cs
 C:\Users\FAM-OLIVAS\Documents\JUAN\SEGUROSUSA\SEGUROSUSA\obj\Debug\SEGUROSUSA.csproj.CoreCompileInputs.cache
 C:\Users\FAM-OLIVAS\Documents\JUAN\SEGUROSUSA\SEGUROSUSA\obj\Debug\SEGUROSUSA.exe
 C:\Users\FAM-OLIVAS\Documents\JUAN\SEGUROSUSA\SEGUROSUSA\obj\Debug\SEGUROSUSA.pdb
+C:\Users\FAM-OLIVAS\source\repos\SEGUROSUSA\SEGUROSUSA\bin\Debug\SEGUROSUSA.exe.manifest
+C:\Users\FAM-OLIVAS\source\repos\SEGUROSUSA\SEGUROSUSA\bin\Debug\SEGUROSUSA.application
+C:\Users\FAM-OLIVAS\source\repos\SEGUROSUSA\SEGUROSUSA\obj\Debug\SEGUROSUSA.exe.manifest
+C:\Users\FAM-OLIVAS\source\repos\SEGUROSUSA\SEGUROSUSA\obj\Debug\SEGUROSUSA.application
