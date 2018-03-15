@@ -126,6 +126,7 @@
             // 
             // cmbUsuario
             // 
+            this.cmbUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUsuario.FormattingEnabled = true;
             this.cmbUsuario.Items.AddRange(new object[] {
             "Empleado",
@@ -148,6 +149,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(370, 257);
             this.Controls.Add(this.cmbUsuario);
             this.Controls.Add(this.label5);
@@ -161,6 +163,7 @@
             this.Controls.Add(this._txtNombre);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "EditarUsuario";
             this.Text = "EditarUsuario";
             this.Load += new System.EventHandler(this.EditarUsuario_Load);

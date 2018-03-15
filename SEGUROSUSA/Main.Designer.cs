@@ -43,12 +43,6 @@
             this.modificarValorDelDolarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.corteDeCajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvVentas = new System.Windows.Forms.DataGridView();
-            this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tipo_de_pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Hora_Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Forma_de_pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad_pesos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dtpVentas = new System.Windows.Forms.DateTimePicker();
@@ -71,6 +65,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo_de_pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hora_Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Forma_de_pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad_pesos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
@@ -168,53 +168,6 @@
             this.dgvVentas.ReadOnly = true;
             this.dgvVentas.Size = new System.Drawing.Size(827, 542);
             this.dgvVentas.TabIndex = 10;
-            // 
-            // Usuario
-            // 
-            this.Usuario.HeaderText = "Usuario";
-            this.Usuario.Name = "Usuario";
-            this.Usuario.ReadOnly = true;
-            // 
-            // Cantidad
-            // 
-            dataGridViewCellStyle1.Format = "C2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            // 
-            // Tipo_de_pago
-            // 
-            this.Tipo_de_pago.HeaderText = "Tipo de Pago";
-            this.Tipo_de_pago.Name = "Tipo_de_pago";
-            this.Tipo_de_pago.ReadOnly = true;
-            // 
-            // Hora_Fecha
-            // 
-            this.Hora_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Format = "f";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Hora_Fecha.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Hora_Fecha.HeaderText = "Hora y Fecha";
-            this.Hora_Fecha.Name = "Hora_Fecha";
-            this.Hora_Fecha.ReadOnly = true;
-            this.Hora_Fecha.Width = 88;
-            // 
-            // Forma_de_pago
-            // 
-            this.Forma_de_pago.HeaderText = "Forma de Pago";
-            this.Forma_de_pago.Name = "Forma_de_pago";
-            this.Forma_de_pago.ReadOnly = true;
-            // 
-            // Cantidad_pesos
-            // 
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Cantidad_pesos.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Cantidad_pesos.HeaderText = "Cantidad en pesos";
-            this.Cantidad_pesos.Name = "Cantidad_pesos";
-            this.Cantidad_pesos.ReadOnly = true;
             // 
             // label5
             // 
@@ -468,10 +421,59 @@
             this.label1.TabIndex = 24;
             this.label1.Text = "Cantidad en Dolares";
             // 
+            // Usuario
+            // 
+            this.Usuario.HeaderText = "Usuario";
+            this.Usuario.Name = "Usuario";
+            this.Usuario.ReadOnly = true;
+            // 
+            // Cantidad
+            // 
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            // 
+            // Tipo_de_pago
+            // 
+            this.Tipo_de_pago.HeaderText = "Tipo de Pago";
+            this.Tipo_de_pago.Name = "Tipo_de_pago";
+            this.Tipo_de_pago.ReadOnly = true;
+            // 
+            // Hora_Fecha
+            // 
+            this.Hora_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Format = "f";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Hora_Fecha.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Hora_Fecha.HeaderText = "Hora y Fecha";
+            this.Hora_Fecha.Name = "Hora_Fecha";
+            this.Hora_Fecha.ReadOnly = true;
+            this.Hora_Fecha.Width = 96;
+            // 
+            // Forma_de_pago
+            // 
+            this.Forma_de_pago.HeaderText = "Forma de Pago";
+            this.Forma_de_pago.Name = "Forma_de_pago";
+            this.Forma_de_pago.ReadOnly = true;
+            // 
+            // Cantidad_pesos
+            // 
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Cantidad_pesos.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Cantidad_pesos.HeaderText = "Cantidad en pesos";
+            this.Cantidad_pesos.Name = "Cantidad_pesos";
+            this.Cantidad_pesos.ReadOnly = true;
+            this.Cantidad_pesos.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackgroundImage = global::SEGUROSUSA.Properties.Resources.fondo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1325, 660);

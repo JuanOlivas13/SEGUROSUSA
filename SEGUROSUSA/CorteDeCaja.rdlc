@@ -101,13 +101,13 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.35479cm</Width>
+                  <Width>2.2225cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2.72521cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.75167cm</Width>
+                  <Width>2.48709cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>3.82354cm</Width>
@@ -630,8 +630,8 @@
             <DataSetName>Reporte</DataSetName>
             <Top>2.16641cm</Top>
             <Left>1.05515cm</Left>
-            <Height>1.63903cm</Height>
-            <Width>18.73251cm</Width>
+            <Height>1.63902cm</Height>
+            <Width>18.33564cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -788,13 +788,13 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>27.35792cm</Height>
+        <Height>8.46667cm</Height>
         <Style />
       </Body>
       <Width>20.76979cm</Width>
       <Page>
         <PageHeader>
-          <Height>3.18521cm</Height>
+          <Height>3cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -888,8 +888,8 @@
               <Source>Embedded</Source>
               <Value>LogoDiarte</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.88016cm</Top>
-              <Left>15.55433cm</Left>
+              <Top>0.64973cm</Top>
+              <Left>14.94578cm</Left>
               <Height>1.94346cm</Height>
               <Width>4.23333cm</Width>
               <ZIndex>2</ZIndex>
@@ -918,8 +918,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>2.11488cm</Top>
-              <Left>1.37266cm</Left>
+              <Top>1.88446cm</Top>
+              <Left>1.19627cm</Left>
               <Height>0.70873cm</Height>
               <Width>6.12951cm</Width>
               <ZIndex>3</ZIndex>
@@ -940,12 +940,49 @@
             </Border>
           </Style>
         </PageHeader>
-        <PageHeight>29.7cm</PageHeight>
-        <PageWidth>21cm</PageWidth>
-        <LeftMargin>0cm</LeftMargin>
-        <RightMargin>0cm</RightMargin>
-        <TopMargin>0cm</TopMargin>
-        <BottomMargin>0cm</BottomMargin>
+        <PageFooter>
+          <Height>2.54cm</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="PageNumber">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Globals!PageNumber</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>PageNumber</rd:DefaultName>
+              <Top>0.93911cm</Top>
+              <Left>16.89079cm</Left>
+              <Height>0.6cm</Height>
+              <Width>2.5cm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <PageHeight>27.94cm</PageHeight>
+        <PageWidth>21.59cm</PageWidth>
         <ColumnSpacing>0.13cm</ColumnSpacing>
         <Style />
       </Page>

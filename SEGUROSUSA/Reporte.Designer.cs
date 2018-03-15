@@ -58,16 +58,17 @@
             // 
             // reportViewer1
             // 
+            this.reportViewer1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Bottom;
             reportDataSource1.Name = "Reporte";
             reportDataSource1.Value = this.VENTABindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "SEGUROSUSA.CorteDeCaja.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(0, -11);
-            this.reportViewer1.MaximumSize = new System.Drawing.Size(937, 672);
+            this.reportViewer1.Location = new System.Drawing.Point(0, 81);
+            this.reportViewer1.MaximumSize = new System.Drawing.Size(937, 700);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(937, 672);
+            this.reportViewer1.Size = new System.Drawing.Size(914, 580);
             this.reportViewer1.TabIndex = 1;
             // 
             // panel1
@@ -80,7 +81,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(954, 75);
+            this.panel1.Size = new System.Drawing.Size(914, 75);
             this.panel1.TabIndex = 2;
             // 
             // btnReporte
@@ -142,8 +143,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(954, 661);
+            this.AutoScroll = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(914, 661);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.reportViewer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

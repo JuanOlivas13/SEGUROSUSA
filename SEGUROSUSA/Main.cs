@@ -304,7 +304,7 @@ namespace SEGUROSUSA
         {
             SqlCommand nuevaVenta = new SqlCommand("INSERT INTO VENTA (USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO,VALOR_DOLAR,CANTIDAD_PESOS) VALUES(@USUARIO, @CANTIDAD, @TIPO_DE_PAGO, @FECHA_HORA, @FORMA_DE_PAGO,@VALOR_DOLAR,@CANTIDAD_PESOS);", Connection.ObtenerConexion());
             nuevaVenta.Parameters.Add(new SqlParameter("USUARIO", Login._nombreEmpleado));
-            nuevaVenta.Parameters.Add(new SqlParameter("CANTIDAD", txtCantidad.Text.Trim()));
+            nuevaVenta.Parameters.Add(new SqlParameter("CANTIDAD", Convert.ToDouble(txtCantidad.Text)));
             nuevaVenta.Parameters.Add(new SqlParameter("TIPO_DE_PAGO", cmbTipodePago.Text));
             nuevaVenta.Parameters.Add(new SqlParameter("FECHA_HORA", DateTime.Now));
             nuevaVenta.Parameters.Add(new SqlParameter("FORMA_DE_PAGO", cmbFormadePago.Text));
@@ -391,7 +391,7 @@ namespace SEGUROSUSA
         {
             SqlCommand nuevaVenta = new SqlCommand("INSERT INTO VENTA (USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO,VALOR_DOLAR) VALUES(@USUARIO, @CANTIDAD, @TIPO_DE_PAGO, @FECHA_HORA, @FORMA_DE_PAGO,@VALOR_DOLAR);", Connection.ObtenerConexion());
             nuevaVenta.Parameters.Add(new SqlParameter("USUARIO", Login._nombreEmpleado));
-            nuevaVenta.Parameters.Add(new SqlParameter("CANTIDAD", txtCantidad.Text));
+            nuevaVenta.Parameters.Add(new SqlParameter("CANTIDAD", Convert.ToDouble(txtCantidad.Text)));
             nuevaVenta.Parameters.Add(new SqlParameter("TIPO_DE_PAGO", cmbTipodePago.Text));
             nuevaVenta.Parameters.Add(new SqlParameter("FECHA_HORA", DateTime.Now));
             nuevaVenta.Parameters.Add(new SqlParameter("FORMA_DE_PAGO", cmbFormadePago.Text));
