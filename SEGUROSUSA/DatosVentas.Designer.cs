@@ -295,6 +295,8 @@ namespace SEGUROSUSA {
             
             private global::System.Data.DataColumn columnCANTIDAD_PESOS;
             
+            private global::System.Data.DataColumn columnESTADO;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public VENTADataTable() {
@@ -394,6 +396,14 @@ namespace SEGUROSUSA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ESTADOColumn {
+                get {
+                    return this.columnESTADO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -429,7 +439,7 @@ namespace SEGUROSUSA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public VENTARow AddVENTARow(string USUARIO, decimal CANTIDAD, string TIPO_DE_PAGO, System.DateTime FECHA_HORA, string FORMA_DE_PAGO, decimal VALOR_DOLAR, decimal CANTIDAD_PESOS) {
+            public VENTARow AddVENTARow(string USUARIO, decimal CANTIDAD, string TIPO_DE_PAGO, System.DateTime FECHA_HORA, string FORMA_DE_PAGO, decimal VALOR_DOLAR, decimal CANTIDAD_PESOS, string ESTADO) {
                 VENTARow rowVENTARow = ((VENTARow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -439,7 +449,8 @@ namespace SEGUROSUSA {
                         FECHA_HORA,
                         FORMA_DE_PAGO,
                         VALOR_DOLAR,
-                        CANTIDAD_PESOS};
+                        CANTIDAD_PESOS,
+                        ESTADO};
                 rowVENTARow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVENTARow);
                 return rowVENTARow;
@@ -477,6 +488,7 @@ namespace SEGUROSUSA {
                 this.columnFORMA_DE_PAGO = base.Columns["FORMA_DE_PAGO"];
                 this.columnVALOR_DOLAR = base.Columns["VALOR_DOLAR"];
                 this.columnCANTIDAD_PESOS = base.Columns["CANTIDAD_PESOS"];
+                this.columnESTADO = base.Columns["ESTADO"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -498,6 +510,8 @@ namespace SEGUROSUSA {
                 base.Columns.Add(this.columnVALOR_DOLAR);
                 this.columnCANTIDAD_PESOS = new global::System.Data.DataColumn("CANTIDAD_PESOS", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCANTIDAD_PESOS);
+                this.columnESTADO = new global::System.Data.DataColumn("ESTADO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnESTADO);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID_VENTA}, true));
                 this.columnID_VENTA.AutoIncrement = true;
@@ -515,6 +529,8 @@ namespace SEGUROSUSA {
                 this.columnFORMA_DE_PAGO.AllowDBNull = false;
                 this.columnFORMA_DE_PAGO.MaxLength = 10;
                 this.columnVALOR_DOLAR.AllowDBNull = false;
+                this.columnESTADO.AllowDBNull = false;
+                this.columnESTADO.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -750,6 +766,17 @@ namespace SEGUROSUSA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string ESTADO {
+                get {
+                    return ((string)(this[this.tableVENTA.ESTADOColumn]));
+                }
+                set {
+                    this[this.tableVENTA.ESTADOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsCANTIDAD_PESOSNull() {
                 return this.IsNull(this.tableVENTA.CANTIDAD_PESOSColumn);
             }
@@ -928,10 +955,11 @@ namespace SEGUROSUSA.DatosVentasTableAdapters {
             tableMapping.ColumnMappings.Add("FORMA_DE_PAGO", "FORMA_DE_PAGO");
             tableMapping.ColumnMappings.Add("VALOR_DOLAR", "VALOR_DOLAR");
             tableMapping.ColumnMappings.Add("CANTIDAD_PESOS", "CANTIDAD_PESOS");
+            tableMapping.ColumnMappings.Add("ESTADO", "ESTADO");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [VENTA] WHERE (([ID_VENTA] = @Original_ID_VENTA) AND ([USUARIO] = @Original_USUARIO) AND ([CANTIDAD] = @Original_CANTIDAD) AND ([TIPO_DE_PAGO] = @Original_TIPO_DE_PAGO) AND ([FECHA_HORA] = @Original_FECHA_HORA) AND ([FORMA_DE_PAGO] = @Original_FORMA_DE_PAGO) AND ([VALOR_DOLAR] = @Original_VALOR_DOLAR) AND ((@IsNull_CANTIDAD_PESOS = 1 AND [CANTIDAD_PESOS] IS NULL) OR ([CANTIDAD_PESOS] = @Original_CANTIDAD_PESOS)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [VENTA] WHERE (([ID_VENTA] = @Original_ID_VENTA) AND ([USUARIO] = @Original_USUARIO) AND ([CANTIDAD] = @Original_CANTIDAD) AND ([TIPO_DE_PAGO] = @Original_TIPO_DE_PAGO) AND ([FECHA_HORA] = @Original_FECHA_HORA) AND ([FORMA_DE_PAGO] = @Original_FORMA_DE_PAGO) AND ([VALOR_DOLAR] = @Original_VALOR_DOLAR) AND ((@IsNull_CANTIDAD_PESOS = 1 AND [CANTIDAD_PESOS] IS NULL) OR ([CANTIDAD_PESOS] = @Original_CANTIDAD_PESOS)) AND ([ESTADO] = @Original_ESTADO))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_VENTA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_VENTA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_USUARIO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "USUARIO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -942,10 +970,11 @@ namespace SEGUROSUSA.DatosVentasTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VALOR_DOLAR", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 6, 2, "VALOR_DOLAR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CANTIDAD_PESOS", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CANTIDAD_PESOS", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CANTIDAD_PESOS", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "CANTIDAD_PESOS", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ESTADO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ESTADO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [VENTA] ([USUARIO], [CANTIDAD], [TIPO_DE_PAGO], [FECHA_HORA], [FORMA_DE_PAGO], [VALOR_DOLAR], [CANTIDAD_PESOS]) VALUES (@USUARIO, @CANTIDAD, @TIPO_DE_PAGO, @FECHA_HORA, @FORMA_DE_PAGO, @VALOR_DOLAR, @CANTIDAD_PESOS);
-SELECT ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VALOR_DOLAR, CANTIDAD_PESOS FROM VENTA WHERE (ID_VENTA = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [VENTA] ([USUARIO], [CANTIDAD], [TIPO_DE_PAGO], [FECHA_HORA], [FORMA_DE_PAGO], [VALOR_DOLAR], [CANTIDAD_PESOS], [ESTADO]) VALUES (@USUARIO, @CANTIDAD, @TIPO_DE_PAGO, @FECHA_HORA, @FORMA_DE_PAGO, @VALOR_DOLAR, @CANTIDAD_PESOS, @ESTADO);
+SELECT ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VALOR_DOLAR, CANTIDAD_PESOS, ESTADO FROM VENTA WHERE (ID_VENTA = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@USUARIO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "USUARIO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CANTIDAD", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "CANTIDAD", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -954,10 +983,11 @@ SELECT ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VAL
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FORMA_DE_PAGO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FORMA_DE_PAGO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@VALOR_DOLAR", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 6, 2, "VALOR_DOLAR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CANTIDAD_PESOS", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "CANTIDAD_PESOS", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ESTADO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ESTADO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [VENTA] SET [USUARIO] = @USUARIO, [CANTIDAD] = @CANTIDAD, [TIPO_DE_PAGO] = @TIPO_DE_PAGO, [FECHA_HORA] = @FECHA_HORA, [FORMA_DE_PAGO] = @FORMA_DE_PAGO, [VALOR_DOLAR] = @VALOR_DOLAR, [CANTIDAD_PESOS] = @CANTIDAD_PESOS WHERE (([ID_VENTA] = @Original_ID_VENTA) AND ([USUARIO] = @Original_USUARIO) AND ([CANTIDAD] = @Original_CANTIDAD) AND ([TIPO_DE_PAGO] = @Original_TIPO_DE_PAGO) AND ([FECHA_HORA] = @Original_FECHA_HORA) AND ([FORMA_DE_PAGO] = @Original_FORMA_DE_PAGO) AND ([VALOR_DOLAR] = @Original_VALOR_DOLAR) AND ((@IsNull_CANTIDAD_PESOS = 1 AND [CANTIDAD_PESOS] IS NULL) OR ([CANTIDAD_PESOS] = @Original_CANTIDAD_PESOS)));
-SELECT ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VALOR_DOLAR, CANTIDAD_PESOS FROM VENTA WHERE (ID_VENTA = @ID_VENTA)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [VENTA] SET [USUARIO] = @USUARIO, [CANTIDAD] = @CANTIDAD, [TIPO_DE_PAGO] = @TIPO_DE_PAGO, [FECHA_HORA] = @FECHA_HORA, [FORMA_DE_PAGO] = @FORMA_DE_PAGO, [VALOR_DOLAR] = @VALOR_DOLAR, [CANTIDAD_PESOS] = @CANTIDAD_PESOS, [ESTADO] = @ESTADO WHERE (([ID_VENTA] = @Original_ID_VENTA) AND ([USUARIO] = @Original_USUARIO) AND ([CANTIDAD] = @Original_CANTIDAD) AND ([TIPO_DE_PAGO] = @Original_TIPO_DE_PAGO) AND ([FECHA_HORA] = @Original_FECHA_HORA) AND ([FORMA_DE_PAGO] = @Original_FORMA_DE_PAGO) AND ([VALOR_DOLAR] = @Original_VALOR_DOLAR) AND ((@IsNull_CANTIDAD_PESOS = 1 AND [CANTIDAD_PESOS] IS NULL) OR ([CANTIDAD_PESOS] = @Original_CANTIDAD_PESOS)) AND ([ESTADO] = @Original_ESTADO));
+SELECT ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VALOR_DOLAR, CANTIDAD_PESOS, ESTADO FROM VENTA WHERE (ID_VENTA = @ID_VENTA)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@USUARIO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "USUARIO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CANTIDAD", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "CANTIDAD", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -966,6 +996,7 @@ SELECT ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VAL
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FORMA_DE_PAGO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FORMA_DE_PAGO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@VALOR_DOLAR", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 6, 2, "VALOR_DOLAR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CANTIDAD_PESOS", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "CANTIDAD_PESOS", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ESTADO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ESTADO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_VENTA", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_VENTA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_USUARIO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "USUARIO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CANTIDAD", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "CANTIDAD", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -975,6 +1006,7 @@ SELECT ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VAL
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_VALOR_DOLAR", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 6, 2, "VALOR_DOLAR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CANTIDAD_PESOS", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CANTIDAD_PESOS", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CANTIDAD_PESOS", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "CANTIDAD_PESOS", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ESTADO", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ESTADO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_VENTA", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID_VENTA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -992,8 +1024,8 @@ SELECT ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VAL
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAG" +
-                "O, VALOR_DOLAR, CANTIDAD_PESOS\r\nFROM            VENTA\r\nWHERE        (FECHA_HORA " +
-                ">= @fromDate) AND (FECHA_HORA <= @toDate) AND (USUARIO = @usuario)";
+                "O, VALOR_DOLAR, CANTIDAD_PESOS, ESTADO\r\nFROM            VENTA\r\nWHERE        (FEC" +
+                "HA_HORA >= @fromDate) AND (FECHA_HORA <= @toDate) AND (USUARIO = @usuario)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fromDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "FECHA_HORA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@toDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "FECHA_HORA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1073,7 +1105,7 @@ SELECT ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VAL
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID_VENTA, string Original_USUARIO, decimal Original_CANTIDAD, string Original_TIPO_DE_PAGO, System.DateTime Original_FECHA_HORA, string Original_FORMA_DE_PAGO, decimal Original_VALOR_DOLAR, global::System.Nullable<decimal> Original_CANTIDAD_PESOS) {
+        public virtual int Delete(int Original_ID_VENTA, string Original_USUARIO, decimal Original_CANTIDAD, string Original_TIPO_DE_PAGO, System.DateTime Original_FECHA_HORA, string Original_FORMA_DE_PAGO, decimal Original_VALOR_DOLAR, global::System.Nullable<decimal> Original_CANTIDAD_PESOS, string Original_ESTADO) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID_VENTA));
             if ((Original_USUARIO == null)) {
                 throw new global::System.ArgumentNullException("Original_USUARIO");
@@ -1104,6 +1136,12 @@ SELECT ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VAL
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
+            if ((Original_ESTADO == null)) {
+                throw new global::System.ArgumentNullException("Original_ESTADO");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_ESTADO));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1124,7 +1162,7 @@ SELECT ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VAL
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string USUARIO, decimal CANTIDAD, string TIPO_DE_PAGO, System.DateTime FECHA_HORA, string FORMA_DE_PAGO, decimal VALOR_DOLAR, global::System.Nullable<decimal> CANTIDAD_PESOS) {
+        public virtual int Insert(string USUARIO, decimal CANTIDAD, string TIPO_DE_PAGO, System.DateTime FECHA_HORA, string FORMA_DE_PAGO, decimal VALOR_DOLAR, global::System.Nullable<decimal> CANTIDAD_PESOS, string ESTADO) {
             if ((USUARIO == null)) {
                 throw new global::System.ArgumentNullException("USUARIO");
             }
@@ -1151,6 +1189,12 @@ SELECT ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VAL
             }
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((ESTADO == null)) {
+                throw new global::System.ArgumentNullException("ESTADO");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(ESTADO));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1180,6 +1224,7 @@ SELECT ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VAL
                     string FORMA_DE_PAGO, 
                     decimal VALOR_DOLAR, 
                     global::System.Nullable<decimal> CANTIDAD_PESOS, 
+                    string ESTADO, 
                     int Original_ID_VENTA, 
                     string Original_USUARIO, 
                     decimal Original_CANTIDAD, 
@@ -1188,6 +1233,7 @@ SELECT ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VAL
                     string Original_FORMA_DE_PAGO, 
                     decimal Original_VALOR_DOLAR, 
                     global::System.Nullable<decimal> Original_CANTIDAD_PESOS, 
+                    string Original_ESTADO, 
                     int ID_VENTA) {
             if ((USUARIO == null)) {
                 throw new global::System.ArgumentNullException("USUARIO");
@@ -1216,37 +1262,49 @@ SELECT ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VAL
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_ID_VENTA));
+            if ((ESTADO == null)) {
+                throw new global::System.ArgumentNullException("ESTADO");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(ESTADO));
+            }
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_ID_VENTA));
             if ((Original_USUARIO == null)) {
                 throw new global::System.ArgumentNullException("Original_USUARIO");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_USUARIO));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_USUARIO));
             }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(Original_CANTIDAD));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(Original_CANTIDAD));
             if ((Original_TIPO_DE_PAGO == null)) {
                 throw new global::System.ArgumentNullException("Original_TIPO_DE_PAGO");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_TIPO_DE_PAGO));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_TIPO_DE_PAGO));
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(Original_FECHA_HORA));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_FECHA_HORA));
             if ((Original_FORMA_DE_PAGO == null)) {
                 throw new global::System.ArgumentNullException("Original_FORMA_DE_PAGO");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_FORMA_DE_PAGO));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_FORMA_DE_PAGO));
             }
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((decimal)(Original_VALOR_DOLAR));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((decimal)(Original_VALOR_DOLAR));
             if ((Original_CANTIDAD_PESOS.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((decimal)(Original_CANTIDAD_PESOS.Value));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((decimal)(Original_CANTIDAD_PESOS.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(ID_VENTA));
+            if ((Original_ESTADO == null)) {
+                throw new global::System.ArgumentNullException("Original_ESTADO");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_ESTADO));
+            }
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(ID_VENTA));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1267,8 +1325,25 @@ SELECT ID_VENTA, USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VAL
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string USUARIO, decimal CANTIDAD, string TIPO_DE_PAGO, System.DateTime FECHA_HORA, string FORMA_DE_PAGO, decimal VALOR_DOLAR, global::System.Nullable<decimal> CANTIDAD_PESOS, int Original_ID_VENTA, string Original_USUARIO, decimal Original_CANTIDAD, string Original_TIPO_DE_PAGO, System.DateTime Original_FECHA_HORA, string Original_FORMA_DE_PAGO, decimal Original_VALOR_DOLAR, global::System.Nullable<decimal> Original_CANTIDAD_PESOS) {
-            return this.Update(USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VALOR_DOLAR, CANTIDAD_PESOS, Original_ID_VENTA, Original_USUARIO, Original_CANTIDAD, Original_TIPO_DE_PAGO, Original_FECHA_HORA, Original_FORMA_DE_PAGO, Original_VALOR_DOLAR, Original_CANTIDAD_PESOS, Original_ID_VENTA);
+        public virtual int Update(
+                    string USUARIO, 
+                    decimal CANTIDAD, 
+                    string TIPO_DE_PAGO, 
+                    System.DateTime FECHA_HORA, 
+                    string FORMA_DE_PAGO, 
+                    decimal VALOR_DOLAR, 
+                    global::System.Nullable<decimal> CANTIDAD_PESOS, 
+                    string ESTADO, 
+                    int Original_ID_VENTA, 
+                    string Original_USUARIO, 
+                    decimal Original_CANTIDAD, 
+                    string Original_TIPO_DE_PAGO, 
+                    System.DateTime Original_FECHA_HORA, 
+                    string Original_FORMA_DE_PAGO, 
+                    decimal Original_VALOR_DOLAR, 
+                    global::System.Nullable<decimal> Original_CANTIDAD_PESOS, 
+                    string Original_ESTADO) {
+            return this.Update(USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO, VALOR_DOLAR, CANTIDAD_PESOS, ESTADO, Original_ID_VENTA, Original_USUARIO, Original_CANTIDAD, Original_TIPO_DE_PAGO, Original_FECHA_HORA, Original_FORMA_DE_PAGO, Original_VALOR_DOLAR, Original_CANTIDAD_PESOS, Original_ESTADO, Original_ID_VENTA);
         }
     }
     

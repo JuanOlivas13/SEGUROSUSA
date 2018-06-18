@@ -29,7 +29,7 @@ namespace SEGUROSUSA
         {
             // TODO: esta línea de código carga datos en la tabla 'DatosVentas.VENTA' Puede moverla o quitarla según sea necesario.
             SumasValores();
-            SqlCommand sumaDolaresTarjeta = new SqlCommand("SElECT SUM(CANTIDAD) FROM VENTA WHERE (FECHA_HORA BETWEEN @fromadate AND @todate) AND USUARIO=@usuario AND TIPO_DE_PAGO='Dolares' AND FORMA_DE_PAGO='Tarjeta';");
+            //SqlCommand sumaDolaresTarjeta = new SqlCommand("SElECT SUM(CANTIDAD) FROM VENTA WHERE (FECHA_HORA BETWEEN @fromadate AND @todate) AND USUARIO=@usuario AND TIPO_DE_PAGO='Dolares' AND FORMA_DE_PAGO='Tarjeta' AND ESTADO='Confirmado';");
             this.VENTATableAdapter.Fill(this.DatosVentas.VENTA, dtpFromDate.Value, dtpToDate.Value, Login._nombreEmpleado);
             ReportParameter p1 = new ReportParameter("Usuario", Login._nombreEmpleado);
             ReportParameter p2 = new ReportParameter("SumaPesosTarjeta", _sumaPesosTarjeta);
@@ -42,19 +42,19 @@ namespace SEGUROSUSA
 
         private void SumasValores()
         {
-            SqlCommand sumaPesosTarjeta = new SqlCommand("SElECT SUM(CANTIDAD_PESOS) FROM VENTA WHERE (FECHA_HORA BETWEEN @fromdate AND @todate) AND USUARIO=@usuario AND FORMA_DE_PAGO='Tarjeta';", Connection.ObtenerConexion());
+            SqlCommand sumaPesosTarjeta = new SqlCommand("SElECT SUM(CANTIDAD_PESOS) FROM VENTA WHERE (FECHA_HORA BETWEEN @fromdate AND @todate) AND USUARIO=@usuario AND FORMA_DE_PAGO='Tarjeta' AND ESTADO='Confirmado';", Connection.ObtenerConexion());
             sumaPesosTarjeta.Parameters.Add(new SqlParameter("fromdate", dtpFromDate.Value));
             sumaPesosTarjeta.Parameters.Add(new SqlParameter("todate", dtpToDate.Value));
             sumaPesosTarjeta.Parameters.Add(new SqlParameter("usuario", Login._nombreEmpleado));
-            SqlCommand sumaPesosEfectivo = new SqlCommand("SElECT SUM(CANTIDAD_PESOS) FROM VENTA WHERE (FECHA_HORA BETWEEN @fromdate AND @todate) AND USUARIO=@usuario AND FORMA_DE_PAGO='Efectivo';", Connection.ObtenerConexion());
+            SqlCommand sumaPesosEfectivo = new SqlCommand("SElECT SUM(CANTIDAD_PESOS) FROM VENTA WHERE (FECHA_HORA BETWEEN @fromdate AND @todate) AND USUARIO=@usuario AND FORMA_DE_PAGO='Efectivo' AND ESTADO='Confirmado';", Connection.ObtenerConexion());
             sumaPesosEfectivo.Parameters.Add(new SqlParameter("fromdate", dtpFromDate.Value));
             sumaPesosEfectivo.Parameters.Add(new SqlParameter("todate", dtpToDate.Value));
             sumaPesosEfectivo.Parameters.Add(new SqlParameter("usuario", Login._nombreEmpleado));
-            SqlCommand sumaDolaresTarjeta = new SqlCommand("SElECT SUM(CANTIDAD) FROM VENTA WHERE (FECHA_HORA BETWEEN @fromdate AND @todate) AND USUARIO=@usuario AND TIPO_DE_PAGO='Dolares' AND FORMA_DE_PAGO='Tarjeta';", Connection.ObtenerConexion());
+            SqlCommand sumaDolaresTarjeta = new SqlCommand("SElECT SUM(CANTIDAD) FROM VENTA WHERE (FECHA_HORA BETWEEN @fromdate AND @todate) AND USUARIO=@usuario AND TIPO_DE_PAGO='Dolares' AND FORMA_DE_PAGO='Tarjeta' AND ESTADO='Confirmado';", Connection.ObtenerConexion());
             sumaDolaresTarjeta.Parameters.Add(new SqlParameter("fromdate", dtpFromDate.Value));
             sumaDolaresTarjeta.Parameters.Add(new SqlParameter("todate", dtpToDate.Value));
             sumaDolaresTarjeta.Parameters.Add(new SqlParameter("usuario", Login._nombreEmpleado));
-            SqlCommand sumaDolaresEfectivo = new SqlCommand("SElECT SUM(CANTIDAD) FROM VENTA WHERE (FECHA_HORA BETWEEN @fromdate AND @todate) AND USUARIO=@usuario AND TIPO_DE_PAGO='Dolares' AND FORMA_DE_PAGO='Efectivo';", Connection.ObtenerConexion());
+            SqlCommand sumaDolaresEfectivo = new SqlCommand("SElECT SUM(CANTIDAD) FROM VENTA WHERE (FECHA_HORA BETWEEN @fromdate AND @todate) AND USUARIO=@usuario AND TIPO_DE_PAGO='Dolares' AND FORMA_DE_PAGO='Efectivo' AND ESTADO='Confirmado';", Connection.ObtenerConexion());
             sumaDolaresEfectivo.Parameters.Add(new SqlParameter("fromdate", dtpFromDate.Value));
             sumaDolaresEfectivo.Parameters.Add(new SqlParameter("todate", dtpToDate.Value));
             sumaDolaresEfectivo.Parameters.Add(new SqlParameter("usuario", Login._nombreEmpleado));

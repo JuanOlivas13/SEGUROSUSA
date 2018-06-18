@@ -1355,14 +1355,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SEGUROSUSA.exe" size="2345984">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SEGUROSUSA.exe" size="2353152">
       <assemblyIdentity name="SEGUROSUSA" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>qsgrnVxQGY9KqPQj8MBFiUylSN55d3itpKkQ5WpZq9Q=</dsig:DigestValue>
+        <dsig:DigestValue>DGBQIvc5/mCQ/FV+NnrEcU+fZ7/0lP9E2WFAelNzGAo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

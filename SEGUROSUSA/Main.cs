@@ -170,7 +170,7 @@ namespace SEGUROSUSA
         {
             dgvVentas.Rows.Clear();
             dgvVentas.AutoGenerateColumns = false;
-            SqlCommand selectVentas = new SqlCommand("SELECT USUARIO,CANTIDAD,TIPO_DE_PAGO,FECHA_HORA,FORMA_DE_PAGO,CANTIDAD_PESOS from VENTA where FECHA_HORA >= @fecha AND USUARIO=@usuario;", Connection.ObtenerConexion());
+            SqlCommand selectVentas = new SqlCommand("SELECT USUARIO,CANTIDAD,TIPO_DE_PAGO,FECHA_HORA,FORMA_DE_PAGO,CANTIDAD_PESOS,ESTADO,ID_VENTA,PAGO from VENTA where FECHA_HORA >= @fecha AND USUARIO=@usuario;", Connection.ObtenerConexion());
             selectVentas.Parameters.Add(new SqlParameter("usuario", Login._nombreEmpleado));
             selectVentas.Parameters.Add(new SqlParameter("fecha", dtpVentas.Value.Date));
             try
@@ -179,7 +179,7 @@ namespace SEGUROSUSA
                 {
                     while (rdr.Read())
                     {
-                        dgvVentas.Rows.Add(rdr.GetValue(0), rdr.GetValue(1), rdr.GetValue(2), rdr.GetValue(3), rdr.GetValue(4),rdr.GetValue(5));
+                        dgvVentas.Rows.Add(rdr.GetValue(0), rdr.GetValue(1), rdr.GetValue(2), rdr.GetValue(3), rdr.GetValue(4),rdr.GetValue(5),rdr.GetValue(6), rdr.GetValue(7),rdr.GetValue(8));
                     }
                 }
             }
@@ -204,7 +204,7 @@ namespace SEGUROSUSA
                 _usuario = Login._nombreEmpleado;
                 _tipodepago = cmbTipodePago.Text;
                 _formadepago = cmbFormadePago.Text;
-                _cantidad = Convert.ToDouble(txtCantidad.Text.Trim());
+                _cantidad = Convert.ToDouble(txtCantidad.Text);
                 _cantidadpesos = _cantidad * _valorDolar;
                 _comentario = "GRACIAS POR SU COMPRA!! \n" + txtComentario.Text;
                 if (cmbTipodePago.SelectedIndex == 0 && cmbFormadePago.SelectedIndex == 0)
@@ -302,7 +302,7 @@ namespace SEGUROSUSA
 
         private SqlCommand VentaPesos()
         {
-            SqlCommand nuevaVenta = new SqlCommand("INSERT INTO VENTA (USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO,VALOR_DOLAR,CANTIDAD_PESOS) VALUES(@USUARIO, @CANTIDAD, @TIPO_DE_PAGO, @FECHA_HORA, @FORMA_DE_PAGO,@VALOR_DOLAR,@CANTIDAD_PESOS);", Connection.ObtenerConexion());
+            SqlCommand nuevaVenta = new SqlCommand("INSERT INTO VENTA (USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO,VALOR_DOLAR,CANTIDAD_PESOS,PAGO,ESTADO) VALUES(@USUARIO, @CANTIDAD, @TIPO_DE_PAGO, @FECHA_HORA, @FORMA_DE_PAGO,@VALOR_DOLAR,@CANTIDAD_PESOS,@PAGO,@ESTADO);", Connection.ObtenerConexion());
             nuevaVenta.Parameters.Add(new SqlParameter("USUARIO", Login._nombreEmpleado));
             nuevaVenta.Parameters.Add(new SqlParameter("CANTIDAD", Convert.ToDouble(txtCantidad.Text)));
             nuevaVenta.Parameters.Add(new SqlParameter("TIPO_DE_PAGO", cmbTipodePago.Text));
@@ -310,6 +310,8 @@ namespace SEGUROSUSA
             nuevaVenta.Parameters.Add(new SqlParameter("FORMA_DE_PAGO", cmbFormadePago.Text));
             nuevaVenta.Parameters.Add(new SqlParameter("VALOR_DOLAR", _valorDolar));
             nuevaVenta.Parameters.Add(new SqlParameter("CANTIDAD_PESOS", (Convert.ToDouble(txtCantidad.Text) * _valorDolar)));
+            nuevaVenta.Parameters.Add(new SqlParameter("ESTADO", "Confirmado"));
+            nuevaVenta.Parameters.Add(new SqlParameter("PAGO", Convert.ToDouble(txtPagoCon.Text)));
             return nuevaVenta;
         }
 
@@ -355,6 +357,83 @@ namespace SEGUROSUSA
             }
         }
 
+        private void dgvVentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            if (dgvVentas.CurrentRow != null)
+            {
+                var Id = Convert.ToInt32(dgvVentas.CurrentRow.Cells[7].Value);
+                if (Id != -1)
+                {
+                    DialogResult respuesta = MessageBox.Show("¿Seguro que desea cancelar la venta", "Eliminar Venta", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+                    if (respuesta == DialogResult.OK)
+                    {
+                        SqlCommand cancelarVenta = new SqlCommand("UPDATE VENTA SET ESTADO = 'Cancelada' WHERE ID_VENTA = " + Id + ";", Connection.conn);
+                        try
+                        {
+                            Connection.conn.Open();
+                            cancelarVenta.ExecuteNonQuery();
+                            MessageBox.Show("Venta cancelada correctamente.");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString());
+                        }
+                        finally
+                        {
+                            Connection.conn.Close();
+                        }
+                    }
+                    MostrarVentas();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay ventas para cancelar");
+            }
+        }
+
+        private void btnReimpresion_Click(object sender, EventArgs e)
+        {
+            _usuario = Login._nombreEmpleado;
+            _cantidad = Convert.ToDouble(dgvVentas.CurrentRow.Cells[1].Value);
+            _tipodepago = dgvVentas.CurrentRow.Cells[2].Value.ToString();
+            _formadepago = dgvVentas.CurrentRow.Cells[4].Value.ToString();
+            _pagoCon = Convert.ToDouble(dgvVentas.CurrentRow.Cells[8].Value);
+            _comentario = "GRACIAS POR SU COMPRA!! \n";
+            if (dgvVentas.CurrentRow.Cells[5].Value.ToString() != "")
+            {
+                _cantidadpesos = Convert.ToDouble(dgvVentas.CurrentRow.Cells[5].Value);
+            }
+            else
+            {
+                _cantidadpesos = 0;
+            }
+            if (_formadepago == "Efectivo")
+            {
+                if (_tipodepago == "Dolares")
+                {
+                    _cambio = _pagoCon - _cantidad;
+                }
+                else
+                {
+                    _cambio = _pagoCon - _cantidadpesos;
+                }
+            }
+            else
+            {
+                _cambio = 0;
+            }
+            Ticket tk = new Ticket();
+            tk.ShowDialog();
+            ValoresPorDefault();
+        }
+
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Login._isAdmin==1)
@@ -389,13 +468,15 @@ namespace SEGUROSUSA
 
         private SqlCommand VentaDolares()
         {
-            SqlCommand nuevaVenta = new SqlCommand("INSERT INTO VENTA (USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO,VALOR_DOLAR) VALUES(@USUARIO, @CANTIDAD, @TIPO_DE_PAGO, @FECHA_HORA, @FORMA_DE_PAGO,@VALOR_DOLAR);", Connection.ObtenerConexion());
+            SqlCommand nuevaVenta = new SqlCommand("INSERT INTO VENTA (USUARIO, CANTIDAD, TIPO_DE_PAGO, FECHA_HORA, FORMA_DE_PAGO,VALOR_DOLAR,PAGO,ESTADO) VALUES(@USUARIO, @CANTIDAD, @TIPO_DE_PAGO, @FECHA_HORA, @FORMA_DE_PAGO,@VALOR_DOLAR,@PAGO,@ESTADO);", Connection.ObtenerConexion());
             nuevaVenta.Parameters.Add(new SqlParameter("USUARIO", Login._nombreEmpleado));
             nuevaVenta.Parameters.Add(new SqlParameter("CANTIDAD", Convert.ToDouble(txtCantidad.Text)));
             nuevaVenta.Parameters.Add(new SqlParameter("TIPO_DE_PAGO", cmbTipodePago.Text));
             nuevaVenta.Parameters.Add(new SqlParameter("FECHA_HORA", DateTime.Now));
             nuevaVenta.Parameters.Add(new SqlParameter("FORMA_DE_PAGO", cmbFormadePago.Text));
             nuevaVenta.Parameters.Add(new SqlParameter("VALOR_DOLAR", _valorDolar));
+            nuevaVenta.Parameters.Add(new SqlParameter("PAGO", Convert.ToDouble(txtPagoCon.Text)));
+            nuevaVenta.Parameters.Add(new SqlParameter("ESTADO", "Confirmado"));
             return nuevaVenta;
         }
 

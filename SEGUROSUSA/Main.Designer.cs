@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.usuariosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,12 +66,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo_de_pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Hora_Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Forma_de_pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad_pesos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idventa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PAGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnReimpresion = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
@@ -152,6 +158,7 @@
             // 
             // dgvVentas
             // 
+            this.dgvVentas.AllowUserToAddRows = false;
             this.dgvVentas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvVentas.BackgroundColor = System.Drawing.Color.SkyBlue;
             this.dgvVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -161,13 +168,18 @@
             this.Tipo_de_pago,
             this.Hora_Fecha,
             this.Forma_de_pago,
-            this.Cantidad_pesos});
+            this.Cantidad_pesos,
+            this.Estado,
+            this.idventa,
+            this.PAGO});
             this.dgvVentas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvVentas.Location = new System.Drawing.Point(0, 0);
             this.dgvVentas.Name = "dgvVentas";
             this.dgvVentas.ReadOnly = true;
+            this.dgvVentas.RowHeadersVisible = false;
             this.dgvVentas.Size = new System.Drawing.Size(827, 542);
             this.dgvVentas.TabIndex = 10;
+            this.dgvVentas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVentas_CellContentClick);
             // 
             // label5
             // 
@@ -195,7 +207,7 @@
             this.dtpVentas.CustomFormat = "dddd, dd/MM/yyyy";
             this.dtpVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpVentas.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVentas.Location = new System.Drawing.Point(224, 64);
+            this.dtpVentas.Location = new System.Drawing.Point(177, 67);
             this.dtpVentas.Name = "dtpVentas";
             this.dtpVentas.Size = new System.Drawing.Size(283, 26);
             this.dtpVentas.TabIndex = 22;
@@ -203,7 +215,7 @@
             // btnMostrar
             // 
             this.btnMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMostrar.Location = new System.Drawing.Point(545, 63);
+            this.btnMostrar.Location = new System.Drawing.Point(498, 66);
             this.btnMostrar.Name = "btnMostrar";
             this.btnMostrar.Size = new System.Drawing.Size(152, 27);
             this.btnMostrar.TabIndex = 23;
@@ -327,7 +339,7 @@
             // btnAceptar
             // 
             this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.Location = new System.Drawing.Point(1077, 587);
+            this.btnAceptar.Location = new System.Drawing.Point(1077, 600);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(160, 48);
             this.btnAceptar.TabIndex = 33;
@@ -406,9 +418,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(926, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 24);
+            this.label2.Size = new System.Drawing.Size(79, 24);
             this.label2.TabIndex = 25;
-            this.label2.Text = "Usuario";
+            this.label2.Text = "Usuario:";
             // 
             // label1
             // 
@@ -420,6 +432,17 @@
             this.label1.Size = new System.Drawing.Size(180, 24);
             this.label1.TabIndex = 24;
             this.label1.Text = "Cantidad en Dolares";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(669, 67);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(152, 27);
+            this.btnCancelar.TabIndex = 42;
+            this.btnCancelar.Text = "Cancelar Venta";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // Usuario
             // 
@@ -469,6 +492,40 @@
             this.Cantidad_pesos.ReadOnly = true;
             this.Cantidad_pesos.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            // 
+            // idventa
+            // 
+            this.idventa.HeaderText = "ID VENTA";
+            this.idventa.Name = "idventa";
+            this.idventa.ReadOnly = true;
+            this.idventa.Visible = false;
+            // 
+            // PAGO
+            // 
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.PAGO.DefaultCellStyle = dataGridViewCellStyle4;
+            this.PAGO.HeaderText = "Pago";
+            this.PAGO.Name = "PAGO";
+            this.PAGO.ReadOnly = true;
+            this.PAGO.Visible = false;
+            // 
+            // btnReimpresion
+            // 
+            this.btnReimpresion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReimpresion.Location = new System.Drawing.Point(882, 612);
+            this.btnReimpresion.Name = "btnReimpresion";
+            this.btnReimpresion.Size = new System.Drawing.Size(152, 27);
+            this.btnReimpresion.TabIndex = 43;
+            this.btnReimpresion.Text = "Imprimir Ticket";
+            this.btnReimpresion.UseVisualStyleBackColor = true;
+            this.btnReimpresion.Click += new System.EventHandler(this.btnReimpresion_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -477,6 +534,8 @@
             this.BackgroundImage = global::SEGUROSUSA.Properties.Resources.fondo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1325, 660);
+            this.Controls.Add(this.btnReimpresion);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.lblCambio);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.label9);
@@ -549,12 +608,17 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo_de_pago;
         private System.Windows.Forms.DataGridViewTextBoxColumn Hora_Fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn Forma_de_pago;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad_pesos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idventa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PAGO;
+        private System.Windows.Forms.Button btnReimpresion;
     }
 }
 
