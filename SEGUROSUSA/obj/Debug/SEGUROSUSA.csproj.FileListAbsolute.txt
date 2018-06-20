@@ -253,3 +253,5 @@ C:\Users\FAM-OLIVAS\source\repos\SEGUROSUSA\SEGUROSUSA\obj\Debug\SEGUROSUSA.exe.
 C:\Users\FAM-OLIVAS\source\repos\SEGUROSUSA\SEGUROSUSA\obj\Debug\SEGUROSUSA.application
 C:\Users\FAM-OLIVAS\source\repos\SEGUROSUSA\SEGUROSUSA\obj\Debug\SEGUROSUSA.exe
 C:\Users\FAM-OLIVAS\source\repos\SEGUROSUSA\SEGUROSUSA\obj\Debug\SEGUROSUSA.pdb
+C:\Users\FAM-OLIVAS\source\repos\SEGUROSUSA\SEGUROSUSA\obj\Debug\SEGUROSUSA.csprojResolveAssemblyReference.cache
+C:\Users\FAM-OLIVAS\source\repos\SEGUROSUSA\SEGUROSUSA\obj\Debug\SEGUROSUSA.TicketConv.resources
