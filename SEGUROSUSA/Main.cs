@@ -46,7 +46,7 @@ namespace SEGUROSUSA
                 }
             }
             MostrarVentas();
-            MostrarVentasConv();
+            MostrarVentasComb();
         }
 
         private void cmbFormadePago_SelectedIndexChanged(object sender, EventArgs e)
@@ -319,14 +319,14 @@ namespace SEGUROSUSA
             cmbTipodePago.SelectedIndex = 0;
         }
 
-        private void ValoresPorDefaultConv()
+        private void ValoresPorDefaultComb()
         {
-            txtCantidadConv.Text = "0.00";
+            txtCantidadComb.Text = "0.00";
             txtDolaresEfectivo.Text = "0.00";
             txtDolaresTarjeta.Text = "0.00";
             txtPesosEfectivo.Text = "0.00";
             txtPesosTarjeta.Text = "0.00";
-            txtCantidadConv.Focus();
+            txtCantidadComb.Focus();
             lblFaltaCambio.Text = "Falta por Pagar:";
             lblFaltanteDolares.Text = "0.00";
             lblFaltantePesos.Text = "0.00";
@@ -482,7 +482,7 @@ namespace SEGUROSUSA
             }
         }
 
-        private void txtCantidadConv_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtCantidadComb_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
@@ -491,7 +491,7 @@ namespace SEGUROSUSA
             }
             else
             {
-                if (e.KeyChar == 46 && txtCantidadConv.Text.IndexOf('.') != -1)
+                if (e.KeyChar == 46 && txtCantidadComb.Text.IndexOf('.') != -1)
                 {
                     e.Handled = true;
                     return;
@@ -596,27 +596,39 @@ namespace SEGUROSUSA
             }
         }
 
-        private void btnMostrarVentasConv_Click(object sender, EventArgs e)
+        private void btnMostrarVentasComb_Click(object sender, EventArgs e)
         {
-            MostrarVentasConv();
+            MostrarVentasComb();
         }
 
-        private void btnCancelarVentaConv_Click(object sender, EventArgs e)
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (dgvVentasConv.CurrentRow != null)
+            if (pestanas.SelectedIndex == 0)
             {
-                var Id = Convert.ToInt32(dgvVentasConv.CurrentRow.Cells[8].Value);
+                ValoresPorDefault();
+            }
+            else if (pestanas.SelectedIndex == 1)
+            {
+                ValoresPorDefaultComb();
+            }
+        }
+
+        private void btnCancelarVentaComb_Click(object sender, EventArgs e)
+        {
+            if (dgvVentasComb.CurrentRow != null)
+            {
+                var Id = Convert.ToInt32(dgvVentasComb.CurrentRow.Cells[8].Value);
                 if (Id != -1)
                 {
                     DialogResult respuesta = MessageBox.Show("¿Seguro que desea cancelar la venta?", "Eliminar Venta", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
                     if (respuesta == DialogResult.OK)
                     {
-                        SqlCommand cancelarVentaConv = new SqlCommand("UPDATE VENTACONVINADA SET ESTADO = 'Cancelada' WHERE ID_VENTACONV = " + Id + ";", Connection.conn);
+                        SqlCommand cancelarVentaComb = new SqlCommand("UPDATE VENTACOMBINADA SET ESTADO = 'Cancelada' WHERE ID_VENTACOMB = " + Id + ";", Connection.conn);
                         try
                         {
                             Connection.conn.Open();
-                            cancelarVentaConv.ExecuteNonQuery();
+                            cancelarVentaComb.ExecuteNonQuery();
                             MessageBox.Show("Venta cancelada correctamente.");
                         }
                         catch (Exception ex)
@@ -628,7 +640,7 @@ namespace SEGUROSUSA
                             Connection.conn.Close();
                         }
                     }
-                    MostrarVentasConv();
+                    MostrarVentasComb();
                 }
             }
             else
@@ -637,24 +649,12 @@ namespace SEGUROSUSA
             }
         }
 
-        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        private void txtCantidadComb_Leave(object sender, EventArgs e)
         {
-            if (pestanas.SelectedIndex == 0)
+            if (txtCantidadComb.Text != "")
             {
-                ValoresPorDefault();
-            }
-            else if (pestanas.SelectedIndex == 1)
-            {
-                ValoresPorDefaultConv();
-            }
-        }
-
-        private void txtCantidadConv_Leave(object sender, EventArgs e)
-        {
-            if (txtCantidadConv.Text != "")
-            {
-                _cantidad = Convert.ToDouble(txtCantidadConv.Text);
-                txtCantidadConv.Text = _cantidad.ToString("F2");
+                _cantidad = Convert.ToDouble(txtCantidadComb.Text);
+                txtCantidadComb.Text = _cantidad.ToString("F2");
                 CalcularFaltante();
             }
         }
@@ -726,30 +726,30 @@ namespace SEGUROSUSA
             }
         }
 
-        private void btnVentaConv_Click(object sender, EventArgs e)
+        private void btnVentaComb_Click(object sender, EventArgs e)
         {
-            if (txtCantidadConv.Text == "")
+            if (txtCantidadComb.Text == "")
             {
                 MessageBox.Show("Falta ingresar el campo cantidad", "Falta Cantidad");
             }
-            else if (Convert.ToDouble(lblPagoTotal.Text) >= Convert.ToDouble(txtCantidadConv.Text))
+            else if (Convert.ToDouble(lblPagoTotal.Text) >= Convert.ToDouble(txtCantidadComb.Text))
             {
                 _usuario = Login._nombreEmpleado;
-                _cantidad = Convert.ToDouble(txtCantidadConv.Text);
+                _cantidad = Convert.ToDouble(txtCantidadComb.Text);
                 _efectivoDolares = Convert.ToDouble(txtDolaresEfectivo.Text);
                 _efectivoPesos = Convert.ToDouble(txtPesosEfectivo.Text);
                 _tarjetaDolares = Convert.ToDouble(txtDolaresTarjeta.Text);
                 _tarjetaPesos = Convert.ToDouble(txtPesosTarjeta.Text);
-                _comentario = "GRACIAS POR SU COMPRA!! \n" + txtComentarioConv.Text;
+                _comentario = "GRACIAS POR SU COMPRA!! \n" + txtComentarioComb.Text;
                 _totalPago = Convert.ToDouble(lblPagoTotal.Text);
                 if (_cantidad != 0)
                 {
                     try
                     {
-                        SqlCommand ventaConv = VentaConvinada();
-                        ventaConv.ExecuteNonQuery();
+                        SqlCommand ventaComb = VentaCombinada();
+                        ventaComb.ExecuteNonQuery();
                         MessageBox.Show(@"Venta hecha correctamente.");
-                        TicketConv tkc = new TicketConv();
+                        TicketComb tkc = new TicketComb();
                         tkc.ShowDialog();
                     }
                     catch (Exception ex)
@@ -759,14 +759,14 @@ namespace SEGUROSUSA
                     finally
                     {
                         Connection.conn.Close();
-                        MostrarVentasConv();
-                        ValoresPorDefaultConv();
+                        MostrarVentasComb();
+                        ValoresPorDefaultComb();
                     }
                 }
                 else
                 {
                     MessageBox.Show("La cantidad esta en 0.00", "Advertencia");
-                    ValoresPorDefaultConv();
+                    ValoresPorDefaultComb();
                 }
             }
             else
@@ -776,37 +776,37 @@ namespace SEGUROSUSA
 
         }
 
-        private SqlCommand VentaConvinada()
+        private SqlCommand VentaCombinada()
         {
-            SqlCommand ventaConv = new SqlCommand("INSERT INTO VENTACONVINADA (USUARIO, CANTIDADCONV, EFECTIVO_DOLARES,EFECTIVO_PESOS,TARJETA_DOLARES,TARJETA_PESOS,FECHA_HORA,VALOR_DOLAR,PAGO,ESTADO) VALUES(@USUARIO, @CANTIDADCONV, @EFECTIVO_DOLARES,@EFECTIVO_PESOS,@TARJETA_DOLARES,@TARJETA_PESOS,@FECHA_HORA,@VALOR_DOLAR,@PAGO,@ESTADO);", Connection.ObtenerConexion());
-            ventaConv.Parameters.Add(new SqlParameter("USUARIO", Login._nombreEmpleado));
-            ventaConv.Parameters.Add(new SqlParameter("CANTIDADCONV", Convert.ToDouble(txtCantidadConv.Text)));
-            ventaConv.Parameters.Add(new SqlParameter("EFECTIVO_DOLARES", Convert.ToDouble(txtDolaresEfectivo.Text)));
-            ventaConv.Parameters.Add(new SqlParameter("EFECTIVO_PESOS", Convert.ToDouble(txtPesosEfectivo.Text)));
-            ventaConv.Parameters.Add(new SqlParameter("TARJETA_DOLARES", Convert.ToDouble(txtDolaresTarjeta.Text)));
-            ventaConv.Parameters.Add(new SqlParameter("TARJETA_PESOS", Convert.ToDouble(txtPesosTarjeta.Text)));
-            ventaConv.Parameters.Add(new SqlParameter("FECHA_HORA", DateTime.Now));
-            ventaConv.Parameters.Add(new SqlParameter("VALOR_DOLAR", _valorDolar));
-            ventaConv.Parameters.Add(new SqlParameter("PAGO", Convert.ToDouble(lblPagoTotal.Text)));
-            ventaConv.Parameters.Add(new SqlParameter("ESTADO", "Confirmado"));
-            return ventaConv;
+            SqlCommand ventaComb = new SqlCommand("INSERT INTO VENTACOMBINADA (USUARIO, CANTIDADCOMB, EFECTIVO_DOLARES,EFECTIVO_PESOS,TARJETA_DOLARES,TARJETA_PESOS,FECHA_HORA,VALOR_DOLAR,PAGO,ESTADO) VALUES(@USUARIO, @CANTIDADCOMB, @EFECTIVO_DOLARES,@EFECTIVO_PESOS,@TARJETA_DOLARES,@TARJETA_PESOS,@FECHA_HORA,@VALOR_DOLAR,@PAGO,@ESTADO);", Connection.ObtenerConexion());
+            ventaComb.Parameters.Add(new SqlParameter("USUARIO", Login._nombreEmpleado));
+            ventaComb.Parameters.Add(new SqlParameter("CANTIDADCOMB", Convert.ToDouble(txtCantidadComb.Text)));
+            ventaComb.Parameters.Add(new SqlParameter("EFECTIVO_DOLARES", Convert.ToDouble(txtDolaresEfectivo.Text)));
+            ventaComb.Parameters.Add(new SqlParameter("EFECTIVO_PESOS", Convert.ToDouble(txtPesosEfectivo.Text)));
+            ventaComb.Parameters.Add(new SqlParameter("TARJETA_DOLARES", Convert.ToDouble(txtDolaresTarjeta.Text)));
+            ventaComb.Parameters.Add(new SqlParameter("TARJETA_PESOS", Convert.ToDouble(txtPesosTarjeta.Text)));
+            ventaComb.Parameters.Add(new SqlParameter("FECHA_HORA", DateTime.Now));
+            ventaComb.Parameters.Add(new SqlParameter("VALOR_DOLAR", _valorDolar));
+            ventaComb.Parameters.Add(new SqlParameter("PAGO", Convert.ToDouble(lblPagoTotal.Text)));
+            ventaComb.Parameters.Add(new SqlParameter("ESTADO", "Confirmado"));
+            return ventaComb;
         }
 
-        private void btnReimpresionConv_Click(object sender, EventArgs e)
+        private void btnReimpresionComb_Click(object sender, EventArgs e)
         {
-            if (dgvVentasConv.CurrentRow != null)
+            if (dgvVentasComb.CurrentRow != null)
             {
                 _usuario = Login._nombreEmpleado;
-                _cantidad = Convert.ToDouble(dgvVentasConv.CurrentRow.Cells[1].Value);
-                _efectivoDolares = Convert.ToDouble(dgvVentasConv.CurrentRow.Cells[2].Value);
-                _efectivoPesos = Convert.ToDouble(dgvVentasConv.CurrentRow.Cells[3].Value);
-                _tarjetaDolares = Convert.ToDouble(dgvVentasConv.CurrentRow.Cells[4].Value);
-                _tarjetaPesos = Convert.ToDouble(dgvVentasConv.CurrentRow.Cells[5].Value);
+                _cantidad = Convert.ToDouble(dgvVentasComb.CurrentRow.Cells[1].Value);
+                _efectivoDolares = Convert.ToDouble(dgvVentasComb.CurrentRow.Cells[2].Value);
+                _efectivoPesos = Convert.ToDouble(dgvVentasComb.CurrentRow.Cells[3].Value);
+                _tarjetaDolares = Convert.ToDouble(dgvVentasComb.CurrentRow.Cells[4].Value);
+                _tarjetaPesos = Convert.ToDouble(dgvVentasComb.CurrentRow.Cells[5].Value);
                 _comentario = "GRACIAS POR SU COMPRA!! \n";
-                _totalPago = Convert.ToDouble(dgvVentasConv.CurrentRow.Cells[9].Value);
-                TicketConv tkc = new TicketConv();
+                _totalPago = Convert.ToDouble(dgvVentasComb.CurrentRow.Cells[9].Value);
+                TicketComb tkc = new TicketComb();
                 tkc.ShowDialog();
-                ValoresPorDefaultConv();
+                ValoresPorDefaultComb();
             }
             else
             {
@@ -882,28 +882,28 @@ namespace SEGUROSUSA
             }
         }
 
-        public void MostrarVentasConv()
+        public void MostrarVentasComb()
         {
             int x = 0;
-            dgvVentasConv.Rows.Clear();
-            dgvVentasConv.AutoGenerateColumns = false;
-            SqlCommand selectVentasConv = new SqlCommand("SELECT USUARIO,CANTIDADCONV,EFECTIVO_DOLARES,EFECTIVO_PESOS,TARJETA_DOLARES,TARJETA_PESOS,FECHA_HORA,ESTADO,ID_VENTACONV,PAGO from VENTACONVINADA where FECHA_HORA >= @fecha AND USUARIO=@usuario;", Connection.ObtenerConexion());
-            selectVentasConv.Parameters.Add(new SqlParameter("usuario", Login._nombreEmpleado));
-            selectVentasConv.Parameters.Add(new SqlParameter("fecha", dtpFechaConv.Value.Date));
+            dgvVentasComb.Rows.Clear();
+            dgvVentasComb.AutoGenerateColumns = false;
+            SqlCommand selectVentasComb = new SqlCommand("SELECT USUARIO,CANTIDADCOMB,EFECTIVO_DOLARES,EFECTIVO_PESOS,TARJETA_DOLARES,TARJETA_PESOS,FECHA_HORA,ESTADO,ID_VENTACOMB,PAGO from VENTACOMBINADA where FECHA_HORA >= @fecha AND USUARIO=@usuario;", Connection.ObtenerConexion());
+            selectVentasComb.Parameters.Add(new SqlParameter("usuario", Login._nombreEmpleado));
+            selectVentasComb.Parameters.Add(new SqlParameter("fecha", dtpFechaComb.Value.Date));
             try
             {
-                using (SqlDataReader rdr = selectVentasConv.ExecuteReader())
+                using (SqlDataReader rdr = selectVentasComb.ExecuteReader())
                 {
                     while (rdr.Read())
                     {
-                        dgvVentasConv.Rows.Add(rdr.GetValue(0), rdr.GetValue(1), rdr.GetValue(2), rdr.GetValue(3), rdr.GetValue(4), rdr.GetValue(5), rdr.GetValue(6), rdr.GetValue(7), rdr.GetValue(8), rdr.GetValue(9));
+                        dgvVentasComb.Rows.Add(rdr.GetValue(0), rdr.GetValue(1), rdr.GetValue(2), rdr.GetValue(3), rdr.GetValue(4), rdr.GetValue(5), rdr.GetValue(6), rdr.GetValue(7), rdr.GetValue(8), rdr.GetValue(9));
                         if (rdr.GetString(7) == "Cancelada")
                         {
-                            dgvVentasConv.Rows[x].Cells[7].Style.BackColor = Color.Red;
+                            dgvVentasComb.Rows[x].Cells[7].Style.BackColor = Color.Red;
                         }
                         else
                         {
-                            dgvVentasConv.Rows[x].Cells[7].Style.BackColor = Color.LightGreen;
+                            dgvVentasComb.Rows[x].Cells[7].Style.BackColor = Color.LightGreen;
                         }
                         x++;
                     }

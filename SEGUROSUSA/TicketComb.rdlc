@@ -292,7 +292,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!CantidadConv.Value</Value>
+                    <Value>=Parameters!CantidadComb.Value</Value>
                     <Style>
                       <FontFamily>courier New</FontFamily>
                       <Format>'$'#,0.00;('$'#,0.00)</Format>
@@ -879,7 +879,7 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="CantidadConv">
+    <ReportParameter Name="CantidadComb">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -925,7 +925,7 @@
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>CantidadConv</ParameterName>
+          <ParameterName>CantidadComb</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>

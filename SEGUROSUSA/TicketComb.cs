@@ -11,9 +11,9 @@ using Microsoft.Reporting.WinForms;
 
 namespace SEGUROSUSA
 {
-    public partial class TicketConv : Form
+    public partial class TicketComb : Form
     {
-        public TicketConv()
+        public TicketComb()
         {
             InitializeComponent();
         }
@@ -22,7 +22,7 @@ namespace SEGUROSUSA
         {
             try
             {
-                ReportParameter p1 = new ReportParameter("CantidadConv", Main._cantidad.ToString("0.00"));
+                ReportParameter p1 = new ReportParameter("CantidadComb", Main._cantidad.ToString("0.00"));
                 ReportParameter p2 = new ReportParameter("DolaresEfectivo", Main._efectivoDolares.ToString("0.00"));
                 ReportParameter p3 = new ReportParameter("DolaresTarjeta", Main._tarjetaDolares.ToString("0.00"));
                 ReportParameter p4 = new ReportParameter("PesosTarjeta", Main._tarjetaPesos.ToString("0.00"));

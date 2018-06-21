@@ -89,10 +89,10 @@
             this.lblFaltantePesos = new System.Windows.Forms.Label();
             this.lblFaltanteDolares = new System.Windows.Forms.Label();
             this.lblFaltaCambio = new System.Windows.Forms.Label();
-            this.btnReimpresionConv = new System.Windows.Forms.Button();
-            this.txtComentarioConv = new System.Windows.Forms.TextBox();
+            this.btnReimpresionComb = new System.Windows.Forms.Button();
+            this.txtComentarioComb = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.btnVentaConv = new System.Windows.Forms.Button();
+            this.btnVentaComb = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnCalcularTotal = new System.Windows.Forms.Button();
             this.lblPagoTotal = new System.Windows.Forms.Label();
@@ -105,12 +105,12 @@
             this.txtDolaresEfectivo = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.btnCancelarVentaConv = new System.Windows.Forms.Button();
-            this.btnMostrarVentasConv = new System.Windows.Forms.Button();
-            this.dtpFechaConv = new System.Windows.Forms.DateTimePicker();
+            this.btnCancelarVentaComb = new System.Windows.Forms.Button();
+            this.btnMostrarVentasComb = new System.Windows.Forms.Button();
+            this.dtpFechaComb = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dgvVentasConv = new System.Windows.Forms.DataGridView();
+            this.dgvVentasComb = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EfectivoDol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -122,7 +122,7 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblUsuario2 = new System.Windows.Forms.Label();
-            this.txtCantidadConv = new System.Windows.Forms.TextBox();
+            this.txtCantidadComb = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
@@ -135,7 +135,7 @@
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVentasConv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVentasComb)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -244,7 +244,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1317, 605);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "VENTAS";
+            this.tabPage1.Text = "VENTAS NORMALES";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // lblUsuario
@@ -631,18 +631,18 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.panel4);
-            this.tabPage2.Controls.Add(this.btnReimpresionConv);
-            this.tabPage2.Controls.Add(this.txtComentarioConv);
+            this.tabPage2.Controls.Add(this.btnReimpresionComb);
+            this.tabPage2.Controls.Add(this.txtComentarioComb);
             this.tabPage2.Controls.Add(this.label21);
-            this.tabPage2.Controls.Add(this.btnVentaConv);
+            this.tabPage2.Controls.Add(this.btnVentaComb);
             this.tabPage2.Controls.Add(this.panel3);
-            this.tabPage2.Controls.Add(this.btnCancelarVentaConv);
-            this.tabPage2.Controls.Add(this.btnMostrarVentasConv);
-            this.tabPage2.Controls.Add(this.dtpFechaConv);
+            this.tabPage2.Controls.Add(this.btnCancelarVentaComb);
+            this.tabPage2.Controls.Add(this.btnMostrarVentasComb);
+            this.tabPage2.Controls.Add(this.dtpFechaComb);
             this.tabPage2.Controls.Add(this.label13);
             this.tabPage2.Controls.Add(this.panel2);
             this.tabPage2.Controls.Add(this.lblUsuario2);
-            this.tabPage2.Controls.Add(this.txtCantidadConv);
+            this.tabPage2.Controls.Add(this.txtCantidadComb);
             this.tabPage2.Controls.Add(this.label11);
             this.tabPage2.Controls.Add(this.label12);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -650,7 +650,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1317, 605);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "VENTAS CONVINADAS";
+            this.tabPage2.Text = "VENTAS COMBINADAS";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // panel4
@@ -723,25 +723,25 @@
             this.lblFaltaCambio.TabIndex = 88;
             this.lblFaltaCambio.Text = "Falta por Pagar:";
             // 
-            // btnReimpresionConv
+            // btnReimpresionComb
             // 
-            this.btnReimpresionConv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReimpresionConv.Location = new System.Drawing.Point(925, 584);
-            this.btnReimpresionConv.Name = "btnReimpresionConv";
-            this.btnReimpresionConv.Size = new System.Drawing.Size(152, 27);
-            this.btnReimpresionConv.TabIndex = 81;
-            this.btnReimpresionConv.Text = "Imprimir Ticket";
-            this.btnReimpresionConv.UseVisualStyleBackColor = true;
-            this.btnReimpresionConv.Click += new System.EventHandler(this.btnReimpresionConv_Click);
+            this.btnReimpresionComb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReimpresionComb.Location = new System.Drawing.Point(925, 584);
+            this.btnReimpresionComb.Name = "btnReimpresionComb";
+            this.btnReimpresionComb.Size = new System.Drawing.Size(152, 27);
+            this.btnReimpresionComb.TabIndex = 81;
+            this.btnReimpresionComb.Text = "Imprimir Ticket";
+            this.btnReimpresionComb.UseVisualStyleBackColor = true;
+            this.btnReimpresionComb.Click += new System.EventHandler(this.btnReimpresionComb_Click);
             // 
-            // txtComentarioConv
+            // txtComentarioComb
             // 
-            this.txtComentarioConv.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtComentarioConv.Location = new System.Drawing.Point(891, 496);
-            this.txtComentarioConv.Multiline = true;
-            this.txtComentarioConv.Name = "txtComentarioConv";
-            this.txtComentarioConv.Size = new System.Drawing.Size(406, 70);
-            this.txtComentarioConv.TabIndex = 78;
+            this.txtComentarioComb.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtComentarioComb.Location = new System.Drawing.Point(891, 496);
+            this.txtComentarioComb.Multiline = true;
+            this.txtComentarioComb.Name = "txtComentarioComb";
+            this.txtComentarioComb.Size = new System.Drawing.Size(406, 70);
+            this.txtComentarioComb.TabIndex = 78;
             // 
             // label21
             // 
@@ -754,16 +754,16 @@
             this.label21.TabIndex = 79;
             this.label21.Text = "Comentario del Ticket: (Opcional)";
             // 
-            // btnVentaConv
+            // btnVentaComb
             // 
-            this.btnVentaConv.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVentaConv.Location = new System.Drawing.Point(1120, 572);
-            this.btnVentaConv.Name = "btnVentaConv";
-            this.btnVentaConv.Size = new System.Drawing.Size(160, 48);
-            this.btnVentaConv.TabIndex = 80;
-            this.btnVentaConv.Text = "Confirmar Venta";
-            this.btnVentaConv.UseVisualStyleBackColor = true;
-            this.btnVentaConv.Click += new System.EventHandler(this.btnVentaConv_Click);
+            this.btnVentaComb.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVentaComb.Location = new System.Drawing.Point(1120, 572);
+            this.btnVentaComb.Name = "btnVentaComb";
+            this.btnVentaComb.Size = new System.Drawing.Size(160, 48);
+            this.btnVentaComb.TabIndex = 80;
+            this.btnVentaComb.Text = "Confirmar Venta";
+            this.btnVentaComb.UseVisualStyleBackColor = true;
+            this.btnVentaComb.Click += new System.EventHandler(this.btnVentaComb_Click);
             // 
             // panel3
             // 
@@ -910,37 +910,37 @@
             this.label14.TabIndex = 77;
             this.label14.Text = "PAGOS";
             // 
-            // btnCancelarVentaConv
+            // btnCancelarVentaComb
             // 
-            this.btnCancelarVentaConv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelarVentaConv.Location = new System.Drawing.Point(671, 20);
-            this.btnCancelarVentaConv.Name = "btnCancelarVentaConv";
-            this.btnCancelarVentaConv.Size = new System.Drawing.Size(152, 27);
-            this.btnCancelarVentaConv.TabIndex = 75;
-            this.btnCancelarVentaConv.Text = "Cancelar Venta";
-            this.btnCancelarVentaConv.UseVisualStyleBackColor = true;
-            this.btnCancelarVentaConv.Click += new System.EventHandler(this.btnCancelarVentaConv_Click);
+            this.btnCancelarVentaComb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelarVentaComb.Location = new System.Drawing.Point(671, 20);
+            this.btnCancelarVentaComb.Name = "btnCancelarVentaComb";
+            this.btnCancelarVentaComb.Size = new System.Drawing.Size(152, 27);
+            this.btnCancelarVentaComb.TabIndex = 75;
+            this.btnCancelarVentaComb.Text = "Cancelar Venta";
+            this.btnCancelarVentaComb.UseVisualStyleBackColor = true;
+            this.btnCancelarVentaComb.Click += new System.EventHandler(this.btnCancelarVentaComb_Click);
             // 
-            // btnMostrarVentasConv
+            // btnMostrarVentasComb
             // 
-            this.btnMostrarVentasConv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMostrarVentasConv.Location = new System.Drawing.Point(500, 19);
-            this.btnMostrarVentasConv.Name = "btnMostrarVentasConv";
-            this.btnMostrarVentasConv.Size = new System.Drawing.Size(152, 27);
-            this.btnMostrarVentasConv.TabIndex = 74;
-            this.btnMostrarVentasConv.Text = "Mostrar Ventas";
-            this.btnMostrarVentasConv.UseVisualStyleBackColor = true;
-            this.btnMostrarVentasConv.Click += new System.EventHandler(this.btnMostrarVentasConv_Click);
+            this.btnMostrarVentasComb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMostrarVentasComb.Location = new System.Drawing.Point(500, 19);
+            this.btnMostrarVentasComb.Name = "btnMostrarVentasComb";
+            this.btnMostrarVentasComb.Size = new System.Drawing.Size(152, 27);
+            this.btnMostrarVentasComb.TabIndex = 74;
+            this.btnMostrarVentasComb.Text = "Mostrar Ventas";
+            this.btnMostrarVentasComb.UseVisualStyleBackColor = true;
+            this.btnMostrarVentasComb.Click += new System.EventHandler(this.btnMostrarVentasComb_Click);
             // 
-            // dtpFechaConv
+            // dtpFechaComb
             // 
-            this.dtpFechaConv.CustomFormat = "dddd, dd/MM/yyyy";
-            this.dtpFechaConv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFechaConv.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaConv.Location = new System.Drawing.Point(179, 20);
-            this.dtpFechaConv.Name = "dtpFechaConv";
-            this.dtpFechaConv.Size = new System.Drawing.Size(283, 26);
-            this.dtpFechaConv.TabIndex = 73;
+            this.dtpFechaComb.CustomFormat = "dddd, dd/MM/yyyy";
+            this.dtpFechaComb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaComb.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaComb.Location = new System.Drawing.Point(179, 20);
+            this.dtpFechaComb.Name = "dtpFechaComb";
+            this.dtpFechaComb.Size = new System.Drawing.Size(283, 26);
+            this.dtpFechaComb.TabIndex = 73;
             // 
             // label13
             // 
@@ -957,19 +957,19 @@
             // 
             this.panel2.AutoSize = true;
             this.panel2.BackColor = System.Drawing.Color.Transparent;
-            this.panel2.Controls.Add(this.dgvVentasConv);
+            this.panel2.Controls.Add(this.dgvVentasComb);
             this.panel2.Location = new System.Drawing.Point(14, 71);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(827, 542);
             this.panel2.TabIndex = 72;
             // 
-            // dgvVentasConv
+            // dgvVentasComb
             // 
-            this.dgvVentasConv.AllowUserToAddRows = false;
-            this.dgvVentasConv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvVentasConv.BackgroundColor = System.Drawing.Color.SkyBlue;
-            this.dgvVentasConv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVentasConv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvVentasComb.AllowUserToAddRows = false;
+            this.dgvVentasComb.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvVentasComb.BackgroundColor = System.Drawing.Color.SkyBlue;
+            this.dgvVentasComb.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvVentasComb.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.EfectivoDol,
@@ -980,13 +980,13 @@
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9});
-            this.dgvVentasConv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvVentasConv.Location = new System.Drawing.Point(0, 0);
-            this.dgvVentasConv.Name = "dgvVentasConv";
-            this.dgvVentasConv.ReadOnly = true;
-            this.dgvVentasConv.RowHeadersVisible = false;
-            this.dgvVentasConv.Size = new System.Drawing.Size(827, 542);
-            this.dgvVentasConv.TabIndex = 10;
+            this.dgvVentasComb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvVentasComb.Location = new System.Drawing.Point(0, 0);
+            this.dgvVentasComb.Name = "dgvVentasComb";
+            this.dgvVentasComb.ReadOnly = true;
+            this.dgvVentasComb.RowHeadersVisible = false;
+            this.dgvVentasComb.Size = new System.Drawing.Size(827, 542);
+            this.dgvVentasComb.TabIndex = 10;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1072,17 +1072,17 @@
             this.lblUsuario2.TabIndex = 70;
             this.lblUsuario2.Text = ".";
             // 
-            // txtCantidadConv
+            // txtCantidadComb
             // 
-            this.txtCantidadConv.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidadConv.Location = new System.Drawing.Point(1102, 60);
-            this.txtCantidadConv.Name = "txtCantidadConv";
-            this.txtCantidadConv.Size = new System.Drawing.Size(126, 29);
-            this.txtCantidadConv.TabIndex = 76;
-            this.txtCantidadConv.Text = "0.00";
-            this.txtCantidadConv.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtCantidadConv.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidadConv_KeyPress);
-            this.txtCantidadConv.Leave += new System.EventHandler(this.txtCantidadConv_Leave);
+            this.txtCantidadComb.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantidadComb.Location = new System.Drawing.Point(1102, 60);
+            this.txtCantidadComb.Name = "txtCantidadComb";
+            this.txtCantidadComb.Size = new System.Drawing.Size(126, 29);
+            this.txtCantidadComb.TabIndex = 76;
+            this.txtCantidadComb.Text = "0.00";
+            this.txtCantidadComb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCantidadComb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidadComb_KeyPress);
+            this.txtCantidadComb.Leave += new System.EventHandler(this.txtCantidadComb_Leave);
             // 
             // label11
             // 
@@ -1135,7 +1135,7 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVentasConv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVentasComb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1199,21 +1199,21 @@
         private System.Windows.Forms.TextBox txtDolaresEfectivo;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button btnCancelarVentaConv;
-        private System.Windows.Forms.Button btnMostrarVentasConv;
-        private System.Windows.Forms.DateTimePicker dtpFechaConv;
+        private System.Windows.Forms.Button btnCancelarVentaComb;
+        private System.Windows.Forms.Button btnMostrarVentasComb;
+        private System.Windows.Forms.DateTimePicker dtpFechaComb;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView dgvVentasConv;
+        private System.Windows.Forms.DataGridView dgvVentasComb;
         private System.Windows.Forms.Label lblUsuario2;
-        private System.Windows.Forms.TextBox txtCantidadConv;
+        private System.Windows.Forms.TextBox txtCantidadComb;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblPagoTotal;
-        private System.Windows.Forms.Button btnReimpresionConv;
-        private System.Windows.Forms.TextBox txtComentarioConv;
+        private System.Windows.Forms.Button btnReimpresionComb;
+        private System.Windows.Forms.TextBox txtComentarioComb;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Button btnVentaConv;
+        private System.Windows.Forms.Button btnVentaComb;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn EfectivoDol;

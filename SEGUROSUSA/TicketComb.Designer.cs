@@ -1,6 +1,6 @@
 ﻿namespace SEGUROSUSA
 {
-    partial class TicketConv
+    partial class TicketComb
     {
         /// <summary>
         /// Required designer variable.
@@ -34,20 +34,20 @@
             // reportViewerConv
             // 
             this.reportViewerConv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportViewerConv.LocalReport.ReportEmbeddedResource = "SEGUROSUSA.TicketConv.rdlc";
+            this.reportViewerConv.LocalReport.ReportEmbeddedResource = "SEGUROSUSA.TicketComb.rdlc";
             this.reportViewerConv.Location = new System.Drawing.Point(0, 0);
             this.reportViewerConv.Name = "reportViewerConv";
             this.reportViewerConv.ServerReport.BearerToken = null;
             this.reportViewerConv.Size = new System.Drawing.Size(784, 661);
             this.reportViewerConv.TabIndex = 0;
             // 
-            // TicketConv
+            // TicketComb
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 661);
             this.Controls.Add(this.reportViewerConv);
-            this.Name = "TicketConv";
+            this.Name = "TicketComb";
             this.Text = "TicketConv";
             this.Load += new System.EventHandler(this.TicketConv_Load);
             this.ResumeLayout(false);
