@@ -161,6 +161,12 @@
     <Compile Include="Reporte.Designer.cs">
       <DependentUpon>Reporte.cs</DependentUpon>
     </Compile>
+    <Compile Include="Respaldo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Respaldo.Designer.cs">
+      <DependentUpon>Respaldo.cs</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Ticket.cs">
       <SubType>Form</SubType>
@@ -216,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte.resx">
       <DependentUpon>Reporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Respaldo.resx">
+      <DependentUpon>Respaldo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ticket.rdlc" />
     <EmbeddedResource Include="Ticket.resx">

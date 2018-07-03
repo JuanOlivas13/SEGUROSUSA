@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SEGUROSUSA.Properties;
 
 namespace SEGUROSUSA
 {
@@ -37,8 +38,10 @@ namespace SEGUROSUSA
             {
                 try
                 {
-                    _valorDolar = Convert.ToDouble(Microsoft.VisualBasic.Interaction.InputBox("Ingrese valor del dolar", "Valor del dolar", "18.5"));
+                    _valorDolar = Convert.ToDouble(Microsoft.VisualBasic.Interaction.InputBox("Ingrese valor del dolar", "Valor del dolar", Settings.Default["ValorDolar"].ToString()));
                     _succes = true;
+                    Settings.Default["ValorDolar"] = _valorDolar;
+                    Settings.Default.Save();
                 }
                 catch (Exception ex)
                 {
@@ -136,6 +139,10 @@ namespace SEGUROSUSA
                     txtCantidad.Text = _cantidad.ToString("F2");
                 }
             }
+            else
+            {
+                txtCantidad.Text = "0.00";
+            }
         }
 
         private void txtPagoCon_Leave(object sender, EventArgs e)
@@ -155,6 +162,10 @@ namespace SEGUROSUSA
                     lblCambio.Text = _cambio.ToString("0.00");
                     txtPagoCon.Text = _pagoCon.ToString("F2");
                 }
+            }
+            else
+            {
+                txtPagoCon.Text = "0.00";
             }
         }
 
@@ -410,7 +421,7 @@ namespace SEGUROSUSA
                 var Id = Convert.ToInt32(dgvVentas.CurrentRow.Cells[7].Value);
                 if (Id != -1)
                 {
-                    DialogResult respuesta = MessageBox.Show("¿Seguro que desea cancelar la venta?", "Eliminar Venta", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    DialogResult respuesta = MessageBox.Show("¿Seguro que desea cancelar la venta?", "Cancelar Venta", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
                     if (respuesta == DialogResult.OK)
                     {
@@ -552,6 +563,10 @@ namespace SEGUROSUSA
                 aux= Convert.ToDouble(txtDolaresEfectivo.Text);
                 txtDolaresEfectivo.Text = aux.ToString("F2");
             }
+            else
+            {
+                txtDolaresEfectivo.Text = "0.00";
+            }
         }
 
         private void txtPesosEfectivo_Leave(object sender, EventArgs e)
@@ -561,6 +576,10 @@ namespace SEGUROSUSA
                 aux = Convert.ToDouble(txtPesosEfectivo.Text);
                 txtPesosEfectivo.Text = aux.ToString("F2");
             }
+            else
+            {
+                txtPesosEfectivo.Text = "0.00";
+            }
         }
 
         private void txtDolaresTarjeta_Leave(object sender, EventArgs e)
@@ -569,6 +588,10 @@ namespace SEGUROSUSA
             {
                 aux = Convert.ToDouble(txtDolaresTarjeta.Text);
                 txtDolaresTarjeta.Text = aux.ToString("F2");
+            }
+            else
+            {
+                txtDolaresTarjeta.Text = "0.00";
             }
         }
 
@@ -593,6 +616,10 @@ namespace SEGUROSUSA
             {
                 aux = Convert.ToDouble(txtPesosTarjeta.Text);
                 txtPesosTarjeta.Text = aux.ToString("F2");
+            }
+            else
+            {
+                txtPesosTarjeta.Text = "0.00";
             }
         }
 
@@ -649,6 +676,46 @@ namespace SEGUROSUSA
             }
         }
 
+        private void baseDeDatosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Login._isAdmin == 1)
+            {
+                Respaldo res = new Respaldo();
+                res.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No tiene permisos para acceder a esta función", "NO PERMITIDO");
+            }
+        }
+
+        private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Login._nombreEmpleado = null;
+            Login login = new Login();
+            login.ShowDialog();
+            this.Show();
+            _succes = false;
+            this.WindowState = FormWindowState.Maximized;
+            lblUsuario.Text = Login._nombreEmpleado;
+            lblUsuario2.Text = Login._nombreEmpleado;
+            while (_succes == false)
+            {
+                try
+                {
+                    _valorDolar = Convert.ToDouble(Microsoft.VisualBasic.Interaction.InputBox("Ingrese valor del dolar", "Valor del dolar", "18.5"));
+                    _succes = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(@"Favor de ingresar solo numeros. " + ex.Message);
+                }
+            }
+            MostrarVentas();
+            MostrarVentasComb();
+        }
+
         private void txtCantidadComb_Leave(object sender, EventArgs e)
         {
             if (txtCantidadComb.Text != "")
@@ -656,6 +723,10 @@ namespace SEGUROSUSA
                 _cantidad = Convert.ToDouble(txtCantidadComb.Text);
                 txtCantidadComb.Text = _cantidad.ToString("F2");
                 CalcularFaltante();
+            }
+            else
+            {
+                txtCantidadComb.Text = "0.00";
             }
         }
 
@@ -823,7 +894,7 @@ namespace SEGUROSUSA
             }
             else
             {
-                MessageBox.Show("No tiene permisos para acceder a esta función", "No permitido");
+                MessageBox.Show("No tiene permisos para acceder a esta función", "NO PERMITIDO");
             }
         }
 
@@ -872,8 +943,10 @@ namespace SEGUROSUSA
             {
                 try
                 {
-                    _valorDolar = Convert.ToDouble(Microsoft.VisualBasic.Interaction.InputBox("Ingrese valor del dolar", "Valor del dolar", "18.5"));
+                    _valorDolar = Convert.ToDouble(Microsoft.VisualBasic.Interaction.InputBox("Ingrese valor del dolar", "Valor del dolar", Settings.Default["ValorDolar"].ToString()));
                     _succes = true;
+                    Settings.Default["ValorDolar"] = _valorDolar;
+                    Settings.Default.Save();
                 }
                 catch (Exception ex)
                 {

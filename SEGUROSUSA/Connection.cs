@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SEGUROSUSA.Properties;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Windows.Forms;
 
 namespace SEGUROSUSA
 {

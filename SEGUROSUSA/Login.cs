@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using SEGUROSUSA.Properties;
 namespace SEGUROSUSA
 {
     public partial class Login : Form
@@ -24,6 +25,20 @@ namespace SEGUROSUSA
         {
             try
             {
+                if (ckbRecordar.Checked)
+                {
+                    Settings.Default["Usuario"] = txtUsuario.Text;
+                    Settings.Default["Password"] = txtContrasena.Text;
+                    Settings.Default["Checked"] = ckbRecordar.Checked;
+                    Settings.Default.Save();
+                }
+                else
+                {
+                    Settings.Default["Usuario"] = "";
+                    Settings.Default["Password"] = "";
+                    Settings.Default["Checked"] = ckbRecordar.Checked;
+                    Settings.Default.Save();
+                }
                 SqlCommand searchUser = new SqlCommand(String.Format("Select * From USUARIO Where CUENTA_USUARIO = '{0}' and CONTRASENA = '{1}'", txtUsuario.Text, txtContrasena.Text), Connection.ObtenerConexion());
                 SqlDataReader readUser = searchUser.ExecuteReader();
                 while (readUser.Read())
@@ -43,12 +58,12 @@ namespace SEGUROSUSA
                 {
                     readUser.Close();
                     Connection.conn.Close();
-                    MessageBox.Show("Error en los datos.");
+                    MessageBox.Show("Error en los datos.","FALLO AL INICIAR SESION");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString(),"ERROR");
             }
             finally
             {
@@ -77,6 +92,20 @@ namespace SEGUROSUSA
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                txtUsuario.Text = (string)Settings.Default["Usuario"];
+                txtContrasena.Text = (string)Settings.Default["Password"];
+                ckbRecordar.Checked = (bool)Settings.Default["Checked"];
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString(),"ERROR");
+            }
         }
     }
 }
